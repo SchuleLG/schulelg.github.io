@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lernspiele für die Bienenklasse</title>
 <link rel="icon" href="assets/biene.png">
+<!-- v3 -->
 <style>
   :root {
     --honig: #f6b928;
@@ -118,18 +119,21 @@
   a.kachel:hover { transform: translateY(-4px) rotate(-.5deg); }
   a.kachel:active { transform: translateY(2px); }
 
-  .bild img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-  }
   .bild {
-    position: relative;
+    flex: 0 0 150px;
     overflow: hidden;
     height: 150px;
     display: grid;
     place-items: center;
     font-size: 4rem;
+  }
+  .bild img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    object-position: center top;
   }
   #mathe   .bild { background: var(--mathe-hell); }
   #deutsch .bild { background: var(--deutsch-hell); }
@@ -242,7 +246,7 @@
 
       <!-- Externes Spiel (verlinkt, nicht kopiert) -->
       <a class="kachel" href="https://mitlaeuferfotografie.github.io/silbenmonster/">
-        <div class="bild"><img src="assets/silbenmonster.jpg" alt="" style="object-position:center 45%"></div>
+        <div class="bild"><img src="assets/silbenmonster.jpg" alt="" style="object-position:center 40%"></div>
         <div class="text">
           <span class="etikett">Lesen · Silben</span>
           <h3>Silbenmonster</h3>
