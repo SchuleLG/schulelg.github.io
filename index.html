@@ -119,10 +119,13 @@
   a.kachel:active { transform: translateY(2px); }
 
   .bild img {
+    position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover; display: block;
   }
   .bild {
+    position: relative;
+    overflow: hidden;
     height: 150px;
     display: grid;
     place-items: center;
@@ -201,7 +204,7 @@
       <a class="kachel" href="https://mitlaeuferfotografie.github.io/erkennen_und_zerlegen/">
         <div class="bild"><img src="assets/erkennen_und_zerlegen.jpg" alt=""></div>
         <div class="text">
-          <span class="etikett">Zahlen · Erkennen und Zerlegen</span>
+          <span class="etikett">Zahlen · Zerlegen</span>
           <h3>Erkennen und Zerlegen</h3>
           <p>Mengen mit der Kraft der 5 erkennen und Zahlen im Zahlenhaus zerlegen.</p>
           <span class="los">Spielen ▶</span>
@@ -239,7 +242,7 @@
 
       <!-- Externes Spiel (verlinkt, nicht kopiert) -->
       <a class="kachel" href="https://mitlaeuferfotografie.github.io/silbenmonster/">
-        <div class="bild"><img src="assets/silbenmonster.jpg" alt="" style="object-position:center 55%"></div>
+        <div class="bild"><img src="assets/silbenmonster.jpg" alt="" style="object-position:center 45%"></div>
         <div class="text">
           <span class="etikett">Lesen · Silben</span>
           <h3>Silbenmonster</h3>
