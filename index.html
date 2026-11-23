@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernspiele für die Bienenklasse</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐝</text></svg>">
+<style>
+  :root {
+    --honig: #f6b928;
+    --honig-hell: #fff4d1;
+    --honig-dunkel: #c98a00;
+    --braun: #3b2a14;
+    --mathe: #3f8fd2;
+    --mathe-hell: #e4f1fc;
+    --deutsch: #e0624a;
+    --deutsch-hell: #fde9e4;
+    --radius: 22px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI", system-ui, sans-serif;
+    color: var(--braun);
+    background-color: var(--honig-hell);
+    /* Waben-Muster im Hintergrund */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cpath d='M28 0 L56 16 L56 49 L28 65 L0 49 L0 16 Z M28 65 L28 98' fill='none' stroke='%23f6b928' stroke-opacity='0.25' stroke-width='2'/%3E%3C/svg%3E");
+    line-height: 1.5;
+  }
+
+  header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+  }
+  .biene {
+    font-size: 4.5rem;
+    display: inline-block;
+    animation: summen 3s ease-in-out infinite;
+  }
+  @keyframes summen {
+    0%, 100% { transform: translate(0, 0) rotate(-4deg); }
+    50%      { transform: translate(8px, -10px) rotate(6deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .biene { animation: none; } }
+
+  h1 {
+    margin: .3rem 0 .5rem;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+  }
+  .untertitel {
+    margin: 0 auto 1.6rem;
+    max-width: 34rem;
+    font-size: 1.15rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .8rem 1.6rem;
+    border-radius: 999px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 5px 0 rgba(0,0,0,.18);
+    transition: transform .1s, box-shadow .1s;
+  }
+  nav a:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,.18); }
+  nav a.mathe   { background: var(--mathe); }
+  nav a.deutsch { background: var(--deutsch); }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.2rem 3rem;
+  }
+
+  section { margin-top: 2.8rem; scroll-margin-top: 1rem; }
+  section h2 {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: 2rem;
+    margin: 0 0 1.2rem;
+  }
+  section h2 .punkt {
+    width: 1.4rem; height: 1.4rem; border-radius: 50%;
+  }
+  #mathe   h2 .punkt { background: var(--mathe); }
+  #deutsch h2 .punkt { background: var(--deutsch); }
+
+  .kacheln {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .kachel {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 6px 0 rgba(59,42,20,.12), 0 10px 24px rgba(59,42,20,.08);
+    transition: transform .15s;
+  }
+  a.kachel:hover { transform: translateY(-4px) rotate(-.5deg); }
+  a.kachel:active { transform: translateY(2px); }
+
+  .bild {
+    height: 130px;
+    display: grid;
+    place-items: center;
+    font-size: 4rem;
+  }
+  #mathe   .bild { background: var(--mathe-hell); }
+  #deutsch .bild { background: var(--deutsch-hell); }
+
+  .text { padding: 1rem 1.2rem 1.3rem; flex: 1; display: flex; flex-direction: column; }
+  .etikett {
+    font-size: .85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  #mathe   .etikett { color: var(--mathe); }
+  #deutsch .etikett { color: var(--deutsch); }
+  .kachel h3 { margin: .2rem 0 .4rem; font-size: 1.4rem; }
+  .kachel p  { margin: 0; font-size: 1rem; flex: 1; }
+
+  .los {
+    margin-top: 1rem;
+    align-self: flex-start;
+    padding: .45rem 1.1rem;
+    border-radius: 999px;
+    background: var(--honig);
+    font-weight: 700;
+  }
+
+  /* Platzhalter: noch keine App dahinter */
+  .kachel.bald { opacity: .6; box-shadow: none; border: 3px dashed var(--honig); }
+  .kachel.bald .bild { filter: grayscale(.6); }
+  .kachel.bald .los { background: #eee; color: #888; }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem 2.5rem;
+    font-size: .95rem;
+    color: #7a6343;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="biene" aria-hidden="true">🐝</div>
+  <h1>Lernspiele für die Bienenklasse</h1>
+  <p class="untertitel">Such dir ein Spiel aus und leg los!</p>
+  <nav>
+    <a class="mathe" href="#mathe">🔢 Mathe</a>
+    <a class="deutsch" href="#deutsch">🔤 Deutsch</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===================== MATHE ===================== -->
+  <section id="mathe">
+    <h2><span class="punkt"></span>Mathe</h2>
+    <div class="kacheln">
+
+      <!--
+        SO SIEHT EINE FERTIGE KACHEL AUS (zum Kopieren):
+        <a class="kachel" href="ordnername/">
+          <div class="bild">🍯</div>
+          <div class="text">
+            <span class="etikett">Klasse 1 · Thema</span>
+            <h3>Name des Spiels</h3>
+            <p>Kurze Beschreibung.</p>
+            <span class="los">Spielen ▶</span>
+          </div>
+        </a>
+      -->
+
+      <div class="kachel bald">
+        <div class="bild">🔢</div>
+        <div class="text">
+          <span class="etikett">Klasse 1 · Zahlen bis 10</span>
+          <h3>Zahlenspiel</h3>
+          <p>Hier kommt bald ein Spiel.</p>
+          <span class="los">Bald da</span>
+        </div>
+      </div>
+
+      <div class="kachel bald">
+        <div class="bild">➕</div>
+        <div class="text">
+          <span class="etikett">Klasse 1 · Plus und Minus</span>
+          <h3>Rechenspiel</h3>
+          <p>Hier kommt bald ein Spiel.</p>
+          <span class="los">Bald da</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== DEUTSCH ===================== -->
+  <section id="deutsch">
+    <h2><span class="punkt"></span>Deutsch</h2>
+    <div class="kacheln">
+
+      <div class="kachel bald">
+        <div class="bild">🔤</div>
+        <div class="text">
+          <span class="etikett">Klasse 1 · Buchstaben</span>
+          <h3>Buchstabenspiel</h3>
+          <p>Hier kommt bald ein Spiel.</p>
+          <span class="los">Bald da</span>
+        </div>
+      </div>
+
+      <div class="kachel bald">
+        <div class="bild">👏</div>
+        <div class="text">
+          <span class="etikett">Klasse 1 · Silben</span>
+          <h3>Silbenspiel</h3>
+          <p>Hier kommt bald ein Spiel.</p>
+          <span class="los">Bald da</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  🐝 Läuft im Browser · Tafel, Tablet, PC · ohne Anmeldung, ohne Werbung
+</footer>
+
+</body>
+</html>
