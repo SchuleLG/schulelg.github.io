@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../../assets/biene.png">
+<title>Die Schüttelbox</title>
+<style>
+@font-face{font-family:Grund;src:url(data:font/woff2;base64,d09GMgABAAAAACHoABAAAAAASHgAACGIAAEAxQAAAAAAAAAAAAAAAAAAAAAAAAAAGnwbm1gcgz4GYD9TVEFUKgCCHhEICuAUy1IBNgIkA4NcC4FwAAQgBYQgByAMBxswPCMDwcYBQED9qBBFueAsa/46gXPTQ9NeA8JwLEJVa7WkKLrKsrpGhJ41wIA4PgsDH0ZOO0KTU7RCPPVXFS/zF9v6LVcLI1f3LKoGsE4r6LQ+jXJ42uY/c1PhkDrqJJQSDlHCAiyqVBT5E5ZWT1eu0kW0buqqyqW1/WX95OllsL27D4RKJTUaNAqEgpszGXp0M/H7H9wfNOLGzhEx1LgY7X8AWIHz36bFn3VoT5NAZNfHVJAkHTFfc3oFr88PpES1plCPXA77Vun321fpRRVIHKG+1S0V7Eo1bbG455jUa8aEIuVKMRdV7JxyF4vaAyxwBoEDKD5JJeBDUuDzJX1KCuD7s0OOnUcVgwLfKeQyhi7kytO7culK7lS0Ll3VdmUXVeOmjDqGc8AzMXI3UBvTd1yfiEgmQUII9jy3f4wt9Y11GEQfpQKy/S1GUIQDAJMoIlA4EdxEEqLFExIlEpJlE3IVEUr5CJUqCdWqCa0ChKAgTT/9acYaS5hpFmGOOQRBADeCIqgfAbzUm0R1vvkDhE96z5pCOgvA/I8GFBqzpNrE7xlTSF7h7x1DKfidODmvDFWYAoAoZLnnXk+X95WwPAo3Ci+1hEgWoElmyyOWRYlTIzm83xC2fKXyA+U6KBBc/7rfIkoqv3tNl1023/mlmMcG58z8MD3Zbt5FiFKD/+zV5iUNY9cB8/Zg7kwd3ntlG/+Ld5qN8ozPoFZvd4+FP2cImxY9NXc76qe5KKjQ3NiWUGnAdNiLlg5xzGGueYc3D9veeBxL26+law/nI+anEGfy2hYHzNmdZbUvZq2dZm3ANAsD5pvpEmwftsYY13Ibc0xH7b1u7l/mlqHDfpsjbgz6ZX7g+R3iB5u7d55tzuvsUHwGZ7Od12f7ux6vtV7BiFlpo2xqt49l4M4RURPNrnNyi9h5FmKT5QNrbRi7JA4bV3+HDsD8Q6s43U9zlkDh3aEdsZW7GuVoa2Hbifphi6SLXQ+Nd8WOSbswOe+tVhdwdaqptcwjuqsq7man7LA51TijK3ZDHNvVzOV2GQBDPebnoehStIVwNeUpPH0As578w0IIw/V/02peOuqkXFddVfB7XqVBBmk0znhNBGG8LA4gnDCcZLAAcJEmHoBFEotkEURyESWKLYQU4CEaCAoNKBQxQKMRPChieQkF3LhJFId5CRKCtZyW7g5zYOHqSWBOMvNSpSqzUrjF4VgN8hOpBN3FIsXwKEufJJxoFl4EC2wvzjF4waUJwKocSgQOQnDA4oQBxCqBQ231WG40nirdO4qOQTJfEC++s4N+JHG5iyLNC7uj7hJZm7b31lWLQWay6LjL0j5gAHvMj5n7eMLe935cbh/qDzT4jWDhyBPc1Zh/gucV2qr5L0ExiOkkniXMSWVyNjKhVNe0aCFE0yo2LV5bCFXMRvTVtibYc9uKUC5G904cJBxi+meJJWkkm+STAlbYsTNfr/7qqKBB2VB5hHAE5B1k3gL4AOAzgG8AfgL4A5BQAA/BnwD/g4dBnJl5Er2DREiHHCgCH9RCM3SE7tAK2yAAq2AADIMx0UmpywiYS7LmBjLsgUNwAs7BFe0W4AG8AK/BO/ARfMF9VwmRqVPzkZGkg2wh8/m7YdU34mdlc81rzaNsFcmuA+kkZaSWFLOTHKSKpQFJEWT5RrSEz8eG2AZhVkTC1jGwVSlrd65KlKks6UAEJIgPLOJ0DzORkkXsoROmHkSs05GTgqyPiYBIvdqR+TiUpBzp28acn/sELwihhBbEKvrERhSDxKhlo6eddUjV4QwBysQTNxv2yc6OllqcRHV5PmOT+PB3/mQHogTNQY18T5pFuGOJ90wgzwHn/x3XOPAQa5BFttntfMqijoW6Om5tNCepshQoU62RQmj1/H1Y1sEiDyReSBUkReAznEy0sp7HqH6m1KTAJYLgBOmUU0TpdgEArAspwsifZJt/YWzUjUU42c1aiyHWXLUzqcBm5qAeJrgmKPLMPtiZ6q7OxKV8/jbdcMIsKh4QSzv13JoZLDUn8wSB2lAP6BVcsQxRGZTf5zJA4w28uK4XsC95DtlnIBxzckxOU+R/vQ/ARgo2xELLVGruz7hZAtuMh5DQr245IVehYjEQLAm1C9hP9B/q5Rq0N8AE8yxx11n3PfFcjx8eX4h2qp1u55n/AZtPow4Gmmg+tbkTzCnAHOlhb1uTkeq5VfLKy/0itvLsJkPnS9oKJsCbX+imp4Ha62CQHoYYaoBpOhmno1E662KyKabqbrBhRhtugkkCUqVJl8E2Q6Ys2XLMUW2EMUaaSBBjiACEuQD+BFgLRIxGzB34DuDYjCkT0eJW3uhTv/UMkbkqnkFa5YufJJp3MOOxECOacOIRUSyti8JV/Liz4n8KBZ4SgGAxSiLEYagRKJJLiEKoVAoEUak8yACzYX4kTJMTWAQ0jqCIISQhGAaGIUXQ6GSivwKbwEuISS5KEEWzw3CEzMJVbX7+kDnZEEoiQCQChoLBiDEQFXO6SZjMYk1gPJbgxDOZMGy1QlDo4IZ5DxIMYTAiir6pldG4si1s5lbayOVbQpta6W5MzrIt+Vj1HjCCEBgtq1QQZVq4ARnSyug6y2iDqTZXA0hMVtHEnmj9snBnq2c/gBq+u8FeXrJxEDf8FsoyBBHwV45E5tTUctFv52VbL+RaTL/C4OAhntKdp1oVc5gxrGsuGSGhmfP5mNTs/bk38GpVJdSiRY1BqQCojKRZSjkmpPXul6r7C0QJ3DsxaWiD7p9GwxOsE3RC9NvDfZWhxkhPsgb8FWy0UgiQmXFb9+CNyumnVIUlHMQnq6i3b56BGKk6dMOpM9jv3hdVWORf3Kcr1PBbHxq4qu9HwEWP615ch1CAQ2W6p60DCMpMdfuyA6nygnlHjQY9O7J4hKApmjyhhvsE1djz1stL17h00Yac3umruTO2kHqgtQb8M5g90fdhFZpcJrJYX9o55i1jKvqCmzIxY5Y/juZW5/KTq5diiPhEZWNaqvKrLAgzD5tlgEDAs6qv5FigvpN6JMtkuN4J6mLdb3/7vagv9OMEb6TANOfUVWL5C13mUam9uocQ4j4Ppy0SBJG47SNo0Gj3Noj6Qv5MYfPc5KWrLHDvC27dGVL9DHw35hlsiUJ8XxeNeWHHm3hAedFcfWqILAVy+/qLzOeKIhFY3zyXS6HMGIrrVwH8rUH6l8oEJrNnNTCGUaZyobbQLWx0akTJAAWtMqceXoT8ApnOIUzFnqTv/JOSP1paIRZ7cyfIuGT1lhH60nq6mblQHBUDH+yQbjtvL0EhAvBr7+D40fsQvVa5fACoZppRgAJnd7boauRuGqvc9K6GxzBN1YD7twZRe6FXDZ/ArHFk1/QhmzFagI3+X+2SY94eUu1kqT3F4aQqSMCuFUhRbD8wc5ZdeIk1BFOrH5FGXnbSJaiEviihdYqmjoLe0e/vZuSW/TO1ru24ZcOIupOiC8hKpeuyUNeJQMzul20B2xbPVmkkLbD+Ib4DOMl8a24oUfCwVf4avW5dR7E4/xGrtbGoPcXsSmoh5rKgkFEQHb92jxK3zsXhchqNS+hGcyAEFY938gLQbeKWm8df3rZs0el/c+U6GFsjvsRp0nZednAQFzQU5jj49aqT0ObBfAVNi1GA7vHqeD83sc8by9u3CDfepIToGquM9clai2LHE8DNMGaqTiTYxmZJ8ESKi3szYBM1sHLC+flzUIy6P9jxrkBSXCrlBilWw31KEFE+akRcdKfDw8Fp5zKPSl9SXOclaIOaiyYnqxrLGVpR9WgsohhRJFpDtpEYW4jbeRLzGNUCHRSO4URtZqjTFgqVcgtSr7hsaHyRoBCqbufTmG/nV1E48jRSTPWYKULIJWVnSVH7bHMK+36jVi/tr+5tlRZw0KWoi4NTU7tF03TZ2/JRmsP0kEWS76/WpbwDsrihEsF8teIMWS8+xbbYJyiLRd3ZVResLS+IVq0nmX208dsrsZZAiGvMlsR6rQ100z5kNWBnjLjvqzp8JXfqXXjQwLhZieUmMrtq2Do8456tbmhwdEkgZYDxVxGTbmXW6eaIRday0rhM1u+UpQXKg0pJ7i9cKjlWtWbnFpSmuL+vo+DFUKcjo6lFfN7xwmfVpAHTW8awpLOpsYxOladj2zJcaTgXNEl0D6MctGLi537vMotMaT5x1gH69IgnpCpmT497ZVN0qNw3gzLPkXpcZ9n3y2UblSaTPSZsaWKx0ijdqAfV1kR/zTAgNSFmLnLsIk0hvhcb83fbifIpNpKy/SGHM4IikWO8/xXlWLmE4xi2ijgiJAuBzsQFzilgYizXHV3CabigBBI9bzswmwhcZhWcFr6X2UhOurxU7X0yuVwUV0Q5m9TUhubIOZ2xHzN+JDZHBZwWhAm/jiI7xfOEc/Ju5oaGwK44DVcWM4euHIA6tSVSCQkj+u3yApJKRuJcl0ZQGTezvQPj55qtujHtIOvHgxJfoLs0qKRNmkEwdbKkoX6sC8jhA1PbjX5+jp+pXbKsDd5o7QgtVd5DxUOIng7Q2O5b0CoF4r1s0M1iTxSgfxyl1YuI913/tTZgYhpbSIjiQdqJT0aduXuuYLvulBfkQlP1i/Qr665btNHFXphf4nlM2aIbaBmUd/O+jzGpS8nSAqi5yBlzMpx3NLkPwrRSN6oBW0WCizTleysEAjjoP6+QvNNygRBCrOw5VCxW0HplLoAIh+NxRMzakJ74EmwKncubEBMYCsoQbI1SlVaASGGR1y2R0HNWy0gkkQCYq1HU82UGJ+slpzZnJhOYxmSH8KscrHB+Ydis4GwwF1JB5BJKM4gTMtc5FgevQg2HYMz+lg9QOqEBZkPpUJ7i/AysuQkBxJwk26bic3a8e5lRWIunEWhAKnUoZsW8OYAd15WiZb2uCb9YxHU9MSaxXbnKyw4JMjAdSb9L81Xcqr7wqh95wYLrWR+rGv0aI+XvgSyf+oOeHBRviGK4ahhLgy9HK2R7TOsSqvB4w52E4W4owon+dy25Pv/6lVdPHI434fznV557XPjXz8//92f/23b9a/bKcTiNfE8wigxkSG65GzkZuY44gTUt0cQLDQQe2CAR2uLlzDyVziUroaXMdM7SDuAcQoxC8fvzefjkFZmzJDZkIdsgln3Oxic2gxeE/PmGonEJ20r11EZpmd6Vpy5laqQDyXmK8MZBl69oZ7Rl8KzEaIkd1kqUGXw3sTTFhy5wFlTJM7hdC6Qzpw+53JE1amV/SwFHracA8sJHG1ozquuUC7O9vFWOxpF5zZKy3By3expniC61kDXFZZAM83omx3rmgZ2wi5RDcmuO43ZS4F24BUmZuJMU+BQus2rBVCWwA4siVSjGzrkBk126T0K3BPKBO4RcMMtQMC6+Xf2PP4DkVrJn1h5+LF/els6zEEXNIyFe4CgokWvkWbTToixyDTC9x52CKSdxKO4kZZxy94DqcXLOMDaGMib2TPwiupyvEGnvaYe0bME+aFgEe6GFewXEhNRikdmlTsF199Y6aAcNjERm6s6veKO0at0GqtS0ATHmtDgnlfjhYaAoY+TipqNF154HzmiaaMyfvGLC+HRlS//IKzvfjqkqKx7af9gKbqU7UWHBeET1SFBg7HpIULk+zZCWzySql0GM3KW+KxcSifGjKe/v+tS1dQje1U+fvzCjMjmctr779ZtB7/T+VsWCzuUpVufP00dEnxJDZl1OnqqEpcqR2ChaVJHByzvGTvWK52cWVIZRxyTH95Wk+NC8wiq5w/5qVgGfK2mSGApczuTqgYb66GUFhsB1AyAf+RL7VGDd5UqZvr8tIS59SIRlBXi+N3R9+yP5aNU/j+9sfxA3WoRZpBbe4d2tbq2cIdIOzBKSDbPW2aK85Jz+DY3j6nUJlp/aopkzdcLMZN2k1yz5c5yrrxE//fTjbpbiqY9unA2yCUxDmIH2V3Wp39NnkeycHSa8JN5BstIzpLxmipbVrrJEaMU2ZmZ8oiDHqBoUoVJ4GOZY7FbFiqulLUs26oliURrh9DCe+KjawJx1rB/PqorxpKdHD3ak13BAEYQiybhYNIb5+lpxyZAPnCZYG6KzHeIaU2UkXEOlPn5wscJsKlAoB+sr/XqTKwdaps8ygWFYysCphK8DNXcM8Qs1+KGc18T2hXz3HTuROHBYDUgt8M3PxS3MfMYdvykWCqDgJgW7qmFKtet/E4MgIpy2ie8+o8HtGZg7gUYd1IBz+V0SFE4AM4B455gP0+RVM2adqmWOND5g668lZcPpKvranobuhtnzQvevhYy/V4DN/YpBKhZFhoe8rdiXFD1+/Ks9f+6ZVxOdtNkb+m4YAmIwhPx+EXewG8xs8ZtonBdxBrq5t//+Ab/wpLz4uOpcBSGPpx+gp4nYWtLNIJwPhm3QdGzNg5DQs5emFpKmzSAbd5DLSRRa/bVIPziwwDh28v8JNIdZGKF9SvrStYpNP5E69waYA8E27ESsDSb7cPdrZXaau2L0eAUxj6cbZ6KhnB1rA7FecunNtUz6TnYNJl2YQHMkCRmcC2zAI2hLVKoGtzqyIMWUK1CgXq51m77tauGh5myU80c6UYcmR+b8K2GfyjS01nZ01M9qzogxkHTISMzj6quNNDFTi7+5Feslm6vDSkh+UEjvo4YGQfGIqLz+qvgr+5L9/PwaivtR77kfuk/8qOUSnIXa2GqtllumtXqFCXEmpEnCxx7PYhbixhs4ur6fkXNUdhuXM+M01RiTEJn1r4S5xpH7gdbR4Vk1RYsaiADZrx0gXzhbnCLRXn2xhiecxzSnhBUUVzEsPZYO/yIIq752L7Y9W1kxSJH1PUL3nvuue6cyerSEtwCwwum+kc3UT8q3CeQjy5OeaXRTbCzWvqp7euO2YOgKBw/NzPiArXkVEnbvcM4UXukMQun27/3AyXBFb9xCrI0Me7EzSHhs2MtLDTnGvBHEvB1B5eZtyHUW+wbCOMGGrgPp/pg376r2v6IXr3qeiaf6M0ljQ2xialMAKQc5nj31CQTZwWZtB7HX1/qhqve8sH7MBgmB+iMC30SkTRFA1XtY9W+2v9nQuSIZedycZNd5+s2EwoIjVrTiL/QNGaU6OiMc+ZZrGaC0dGC94JSqWQm85JHt7ShoIDUZtMZ1/EagHI+n+0qbqZ+iZJd59PRfXP0GehKzf6LezpPKHTyJ/qkehGDuHWooUIxyK3xdo9uPbMM+u30MVL8GTZ5OkDt5MZkZWqwXhm1YFVd2iU/oV0p7loL1Arqdl0VlHObBnVf1PLkTzOAK03tkB/9ltHqIhBUTikcGeLYH4fvEJ2hL9KoRDhVnUIrRJZBri3WqkQ4pOUuYPtdAEzg55nSiXpzMyflXEsknAHN22+qEiXWKvQJzh7BOrGnZAP7W2gj6Cel4TFpzMlGXOJvWy9HhnaFx9k9rCypD/AjTIM1ublqvbHg7TGlraXFtrPrj64YpeFKF5fcVSF59XwlCPTnzU3HwtVZiizWDzmLe3kxnZ29IJ2zPixWJ0m08mfDFm4+t3Lb2jIt7GiK5XWxm2qYM4g5DjFhodUnAl3BR1Rah0oHbBVN24hxXRUaujk0792asOBKlUYJYhw3TtwZ6+q5+AjDhyXYhP1OjXbs+bdSACxzkc9XjZYk6vUJnQLWvQkJevi1o4I0yyEvW/PCRqOjw54S+9yKXYcC/ECyx7j83dAyCC7Mvapzf6GPgIvIb9p9TaUAPBGusq84NqURwDE1j46RGuzgcp9JMbRzVaEeDNS9LGIaSJ1SNrUp2gF5Bu0DaKZt9c8aOpj3bQsKQE0EttzfeOMWXzM9pmjV//+xd2/4KI84xHW+5DVzwnVnBdZ24TpjyAmfGPodLg+p+4W5TyDdxoMXDzy4vRzmuzpKvzEFaWA5FRLPz58AfzcYwT7pwoDqVU5Bu8HJVor3iJfFVtaZzd2ez+JfWkw2SRGFuvtQRmrAfXAjBLAss3xshFqWz0XRrItubxMN6wRzCkOWF7rsbs8hTxKUqu1XmocUNWhLy3tmQzYn+4DosMjdNlsP9XiZKY7qhyowp6vbKHDP3m+VEhBtXoZ2i3laZC/7BUlOwEYODX6hfjj99JsF+W1GFn/6QiKN+Ch2LTQEWrI759Pq1D9bsZLNIu+0yopbqPKxUdT66D0N9F25aUeaQlbDVyYMRa7IoTx0F6ZmmGFuay5Uvmz59PfScTN6MByaCsog9QDdhRTLu3fqTsDU+M0IU66DOj7DEJSa6i+TG5PDNZPgZNiXOQP+Yz4p+retk8/Wkr/eRmqe4pOVHHLGDmQmJgxBzktCdxGEZDrdpcblG0cCENEGh3VjDAxgs7IM6VxAzJ9ELa1RUXFJGVagqV8pAYS8k9UHPYdJmvK8TAZkEoYmg5f15r8miSsUfP0wRMQn26XeJkhMvpWWJbWx55HOESORkhIUf6fskbB90g0xejB8fisb0mc32TbJpp3vMwjqHs0IAZhAKZw40bq8vF2yzTKzsN0vuCs6uIMF7OFlB46S+LNVQZL7Hxhmqtjn5UpmVlc/IVqTF9c+XpUZ+rPgzte15h8JgknsYsboKgd0iLMswRNfZnZVisCikeGE98Q57rdo/5XoJzkGkO7ZlLuAjmKo5znThkPQo2CBNNyZE3tel8nOUicJsk3IgPT6+P82kFGYlMcMS5k9YmmuVDlanRA+y66qjDE6ZHe7P0MXIFc4ClZ70zCyO3xElZejG2Mmpj5kGOd8o5u7p/BjF/ei3iSuI1ruUAJa3GcjnDAneyMnemTdLPSrOxiqnD0iJ/D+d0mCU5zFk2kqBrZEsh229FAJTH2as58YuWGvGo0on0GCpe5V1QIbYCqbhyYo8hsXderRv80L37aKxjqF6Vnu7YEuWCKLBzhejYKIQWcYQChnLEPCMEOeUS/JVkdgXmzJYMrtMnJ/MxXbuiUSs4Yd070fQUv4T4g9n/zecmooLKC6DQ0U15ZzusaNIdNH4xmDi9FinTOJNjmr3LspmZpCj/VRREZ0bZYgNf0hrfNTU/6KfGdf7aTQNC6zksF6wOR9Z7I8c9gtQeBaaiA3MT3z/0RpLnAhTFhF5WAfbukPZAXY/QJFlp0fxa+Ij9yLH2ewTBZjDvXBX78M+6DqGGR6bSb7OsScoeE4zGi/6Ikk/5LraZtj6rzU6CxYahybr6nK14oHmdB//5yrIR+6hk5F9HHjWEDeEQTdxRjrdiFMPNGwD8K6BNxEZo0L2C3UdodAEbKDN+PSjNY44H9SuKuo28/qlH/Q00GX13TcZMShwinvUgmJTnxDd9lBoTdlGQ1BA6APQZ9IXBjPdCy2dpRR3XD+uW4bdXIQ8plwzOaj8gag85V+hPq68Imhyl2FsyGOIQR5bkVJPrrgvToihikPTR5eT6yu2lmSwmbh1dPzNNUdg6Z4Mv7WZpOJe9auy1pVlFAj4bGw4tZceyPDbUFr8BzhWskURpUEqLPFkBuBPawAoIKQUCS0WYVGKnO5484RwYjVFF42y7G1ZHEWsA1nMNIqFY9cWd+J+hWyPGGaGfDDZB/nQJWXVw6eXfvivfmtxzfK5Km12YrX0ebhgR6AmiZsS53FLw/88Zr1OQhG+f2OUcH2YiA1zQJ+fcjjz0nsBJTM/IOkvIlGFQTGX+rIjtEQt32uc0KQvyWqUZ/tEjWaLYIwjf4QsS1lI25d07Z35Vz1N45uXOqhGNj87O35+Ue2CVG9Dq9u3qiyB40vROfmx0SNIfv5+Q49GZbh8zkIBbGWQbfTegxUHYDh2Yy/ATWqv49bRRoaNS3fDW9GVTN2WhUaPvlbolrXDbXkZYeORCaLxzLQag8e0ACiQk2DGp3ngFvEqtrZxlyi53OkpbZ40zETGBLEnvqQlHHUE3oUrm1MGePrFKOMngi7G7QSDKTtn0EFqW74L4F3dqPeK93kcgYobVxPAYB1ISkpO2seGjwhN1P1khjER5VGL9zCVaTLKVZpReJ5Ez2vr6boOU6519bR66FRo7oRARDbAwwJaC5c8nl81wwTs/eZokXk/i3LYZAub5Ys/AZWccspRoan30DxjX6PA17u627IpOHCmRix6giZ80k/N8Fwd8XMD9TQgs+iGq4dKvzUEl3LapP8XXRu4aEMZ/yAoivzDAKNRHoY+1HJBHhqgxmlISSLQmHjLsSMlHO9YqxrsLmFopq89JrserHktGkYiCFBFH/qn9EYblTNQxRPBaeQ0qcsRHaOxxZNvtVM4Wcl+HyUWTi23iwBYy+wSJyi78Orqzy48vvsHNyhJql809UfLDs74clhDvQnMveAx1U+Z+rJ5h3mEfkxdVG/2vLwa3I3Hd/UBo1eQbdj/IBsZtkH/YW2cL2F3SEIabXkiUDM7nvdg4+cKS5OL2bxM3Di1xGzgCOK0Ue5Wd9vRIRcG4OmsxYkhE6hCIRU8ukk8U6ZW45DyKU0jjzwY4kNwKvuCCZMn2FW4iHwQzAcZAODCUtkbLAgqg2CgBcByg34YAG5/ihSGDLGFmG0z2IDEalvBLijTgkUAMOg97MS/2OM3FaArnHS6YHKSIP1z/WQuERG4YjlpNasPyPPTBlE3WPWfLB2tXWqLOVf3ytNOZ0D1tyi8/B9RCIbsM48bq92qUAr00n8ZpqhrI5oDUEDpTYtaVQYKiN4v6ok1TXDfz2TDrfT06djt9mOnDUOCFg4YAiu/q693RJrGaJT33U2LfsF3Y/PFfFqyd9oGkSv/3P/zgcs8fdKFHyC8+kX2fT4Up/5z64A/AfDT7b8WAH4/j/Gwpz2ODxzTgRMFgMA/77Rv01wcljnxrsydKouDQoeD6H5h1fAFZ5rJ3fVoTQGYw630ZED5JlG9ktnmoLWq1pwmtw8D7pZU8Eibe43wmWBSvxBmPQGjriLqeAFqDK+q0a5uoxoK2rZBu0IoUrImBYn1bDD/X34W3ZiCGssMnTP071QY9kIk95Jj+uclSZkMUlOcB+tfooYvurC0fETao8YMTVPuEqh24fcguOdgqiTi+p6sKvc/gCR5Qg9Rzh98STLkCbRznslMXGhhw0Ao54lixTg+g2aaNUuUYagalaIqFIhipGfYBcC44SJM5jJvIsNStP/ow4Ceyz/1moNqa4YVZoapwwT5Q8GIwmTvj0XbrUbyUU0zorWa+zfTEO0VdHuVNgrQD57n++09VWI+lX+JI8BcW2FYrQ+CZzpheZgRrmKFALgGTEYJOa6NUoTzyShNRz+NsqgOd5SD5HhGOvGlbhI/WKhsYHSmR1prqmnmm2G8scaZxVbJp1IVW8A4o9meMclw880lGrOSEgtTTWAjyyp3MNss46j6DDPZCvgWzTLNbd6oXLmxxlOis41Q1nbLppqsXMB804wWMNVYo+HiRpuhvG7PhVIqd9aFrduWfrYpRnnOaGPNplaeoUIZ3zWsSpNAD00sOF573E0ptL1qd/aE9VGhzWwQppqiymjf+gV9jW5OWOP3z6xKpuq9/L/6MxsAAA==) format("woff2");}
+:root{color-scheme:light;--bg:#FBF6EC;--ink:#2b2b2b;--wood:#E9A23B;--wood2:#B87318;--red:#E5533D;--blue:#3D7BE5;--line:#C9B99A;--box:#C98B4A;--box2:#8A5A2B}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Grund,system-ui,sans-serif;overflow:hidden;user-select:none}
+.screen{position:absolute;inset:0 0 96px 0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:2vh 3vw;text-align:center}
+.screen.on{display:flex;animation:fade .4s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+h2{font-size:clamp(30px,4vw,58px);margin:0 0 1.5vh;font-weight:400}
+p.say{font-size:clamp(20px,2.3vw,34px);line-height:1.4;margin:.5vh 0 1.5vh;max-width:1300px}
+.row{display:flex;gap:1.2vw;justify-content:center;align-items:center;flex-wrap:wrap}
+.btn{font-family:inherit;font-size:clamp(22px,2.3vw,34px);padding:.4em 1.2em;border-radius:2em;border:3px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.btn.fill{background:var(--ink);color:#fff}
+.btn:disabled{opacity:.3;cursor:default}
+nav{position:fixed;left:0;right:0;bottom:0;height:96px;display:flex;align-items:center;justify-content:space-between;padding:0 3vw;background:#F1E8D6}
+nav button{font-family:inherit;color:var(--ink);font-size:30px;width:150px;height:70px;border-radius:36px;border:3px solid var(--ink);background:#fff;cursor:pointer}
+nav button:disabled{opacity:.2}
+.dots{display:flex;gap:14px}
+.dots span{width:18px;height:18px;border-radius:50%;background:#D8CBB0;cursor:pointer}
+.dots span.on{background:var(--ink)}
+
+/* Schüttelbox */
+.box{position:relative;width:min(40vw,640px);aspect-ratio:1.55;background:var(--box);border:clamp(8px,1vw,14px) solid var(--box2);border-radius:18px;box-shadow:inset 0 0 0 4px rgba(0,0,0,.08),0 10px 24px rgba(0,0,0,.15)}
+.box .wall{position:absolute;left:50%;top:0;bottom:0;width:clamp(8px,1vw,14px);transform:translateX(-50%);background:var(--box2)}
+.box .side{position:absolute;bottom:-2.4em;font-size:clamp(18px,1.8vw,26px)}
+.box .side.l{left:22%;color:var(--red)}.box .side.r{right:22%;color:var(--blue)}
+.box.shake{animation:shake .7s ease-in-out 2}
+@keyframes shake{0%,100%{transform:translate(0,0) rotate(0)}15%{transform:translate(-18px,-6px) rotate(-4deg)}30%{transform:translate(16px,8px) rotate(3deg)}45%{transform:translate(-14px,4px) rotate(-3deg)}60%{transform:translate(12px,-8px) rotate(4deg)}80%{transform:translate(-6px,2px) rotate(-1deg)}}
+.bead{position:absolute;width:8.4%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2A8 0 18%,var(--wood) 45%,var(--wood2) 100%);box-shadow:0 3px 4px rgba(0,0,0,.25);transform:translate(-50%,-50%);transition:left .6s cubic-bezier(.3,1.4,.5,1),top .6s cubic-bezier(.3,1.4,.5,1),opacity .3s,box-shadow .3s;cursor:pointer}
+.bead::after{content:"";position:absolute;left:38%;top:38%;width:24%;height:24%;border-radius:50%;background:rgba(90,50,10,.55)}
+.bead.used{opacity:.18;cursor:default}
+.bead.lit{box-shadow:0 0 0 5px #fff,0 0 18px 6px rgba(255,200,80,.9)}
+.bead .n{position:absolute;inset:-70% 0 auto 0;text-align:center;font-size:clamp(18px,2vw,30px);color:var(--ink)}
+
+/* Zehnerfeld: zwei Fünferreihen */
+.tf{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(6px,.8vw,12px);padding:clamp(8px,1vw,14px);background:#fff;border:3px solid var(--ink);border-radius:14px;width:min(36vw,560px)}
+.tf .slot{aspect-ratio:1;border-radius:50%;border:3px dashed var(--line);position:relative}
+.tf .slot:nth-child(5n){}
+.tf.split{column-gap:0}
+.tf .slot.f{border:none;box-shadow:0 2px 3px rgba(0,0,0,.25)}
+.tf .slot.w{background:radial-gradient(circle at 35% 30%,#FFE2A8 0 18%,var(--wood) 45%,var(--wood2) 100%)}
+.tf .slot.r{background:radial-gradient(circle at 35% 30%,#FFB3A6 0 18%,var(--red) 55%,#A92F1E 100%)}
+.tf .slot.b{background:radial-gradient(circle at 35% 30%,#B3CCFF 0 18%,var(--blue) 55%,#1F4FA8 100%)}
+.tf .slot.pop{animation:pop .35s}
+@keyframes pop{0%{transform:scale(.3)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* Zahlen */
+.nums{display:flex;gap:2vw;align-items:center;justify-content:center;margin:2vh 0 1vh}
+.num{-webkit-text-fill-color:var(--ink);width:clamp(70px,7vw,110px);height:clamp(70px,7vw,110px);border-radius:16px;border:4px solid;background:#fff;font-family:inherit;font-size:clamp(40px,4.4vw,70px);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.num.l{border-color:var(--red)}.num.r{border-color:var(--blue)}
+.num.ok{background:#E3F4DA}
+.num.bad{animation:wig .45s}
+@keyframes wig{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.numlab{font-size:clamp(16px,1.6vw,24px)}
+.msg{min-height:1.6em;font-size:clamp(20px,2.2vw,32px);margin:.6vh 0}
+
+/* Ziffernblock */
+.pad{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;z-index:30}
+.pad.on{display:flex}
+.pad .inner{background:#fff;border-radius:24px;padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pad button{font-family:inherit;color:var(--ink);font-size:48px;width:100px;height:100px;border-radius:18px;border:3px solid var(--ink);background:#fff;cursor:pointer}
+.pad button.x{grid-column:span 2;width:auto;font-size:30px}
+
+/* Layout Schüttel-Folie */
+.two{display:flex;gap:4vw;align-items:center;justify-content:center;width:100%}
+.col{display:flex;flex-direction:column;align-items:center}
+
+/* Sammlung */
+.coll{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6vw;width:min(94vw,1500px)}
+.card{width:calc((min(94vw,1500px) - 5 * 1.6vw) / 6);display:flex;flex-direction:column;align-items:center;gap:.6vh;padding:.8vh .6vw;border-radius:14px;transition:.3s}
+.card .tf{width:100%;border-width:2px;padding:6px;gap:5px;border-radius:10px}
+.card .tf .slot{border-width:2px}
+.card .lbl{font-size:clamp(20px,2.2vw,34px);height:1.3em;display:flex;gap:.8em}
+.card .lbl .a{color:var(--red)}.card .lbl .c{color:var(--blue)}
+.card.hl{background:#FFF0C2;box-shadow:0 0 0 4px #F5B800}
+.ov{position:fixed;inset:0 0 96px 0;background:var(--bg);text-align:center;padding:1.5vh 3vw;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:25}
+.ov.on{display:flex}
+.ov h2{margin-bottom:.5vh;font-size:clamp(28px,3.4vw,50px)}
+.ov .say{font-size:clamp(18px,1.9vw,28px)}
+.ov .box{width:min(36vw,560px)}
+.ov .row{flex-wrap:nowrap}
+.ov .btn,.ov .addbtn{font-size:clamp(18px,1.8vw,28px);padding:.35em .9em;white-space:nowrap}
+.ov .tf{width:min(30vw,460px)}
+.box .half{position:absolute;top:0;bottom:0;width:50%;cursor:pointer;z-index:1}
+.box .half.l{left:0}.box .half.r{right:0}
+#box2 .bead{cursor:default;z-index:2;pointer-events:none}
+.ov .nums{margin:1.5vh 0 .5vh}
+.ov .msg{margin:.3vh 0}
+.addbtn{font-family:inherit;font-size:clamp(22px,2.3vw,34px);padding:.35em 1em;border-radius:2em;border:4px solid;background:#fff;cursor:pointer;color:var(--ink)}
+.addbtn.l{border-color:var(--red)}.addbtn.r{border-color:var(--blue)}
+.dot{display:inline-block;width:.8em;height:.8em;border-radius:50%;vertical-align:-.08em;margin-right:.3em}
+.count{font-size:clamp(20px,2vw,30px);margin-top:1.5vh}
+</style></head><body>
+
+<!-- 1 Box kennenlernen -->
+<section class="screen on" id="s0">
+  <h2>Das ist unsere Schüttelbox</h2>
+  <p class="say">In der Box sind Perlen. Eine Wand teilt die Box in zwei Seiten.<br>Wie viele Perlen sind es? Wir zählen gemeinsam.</p>
+  <div class="two">
+    <div class="col"><div class="box" id="box0"><div class="wall"></div><span class="side l">links</span><span class="side r">rechts</span></div></div>
+    <div class="col">
+      <div class="tf" id="tf0"></div>
+      <div class="msg" id="msg0" style="margin-top:2vh"></div>
+      <div class="row"><button class="btn fill" id="count0">Zählen</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 Schütteln -->
+<section class="screen" id="s1">
+  <h2>Gemeinsam schütteln</h2>
+  <div class="two">
+    <div class="col">
+      <div class="box" id="box1"><div class="wall"></div><span class="side l">links</span><span class="side r">rechts</span></div>
+      <div class="row" style="margin-top:4.5vh"><button class="btn fill" id="shake">Schütteln!</button></div>
+    </div>
+    <div class="col">
+      <p class="say" style="margin:0 0 1.2vh;font-size:clamp(18px,1.9vw,28px)">Tippe die Perlen in der Box an.<br>Sie wandern in die Fünferreihen.</p>
+      <div class="tf" id="tf1"></div>
+      <div class="nums">
+        <div class="col"><button class="num l" id="nl"></button><span class="numlab" style="color:var(--red)">links</span></div>
+        <div class="col"><button class="num r" id="nr"></button><span class="numlab" style="color:var(--blue)">rechts</span></div>
+      </div>
+      <div class="msg" id="msg1"></div>
+      <div class="row"><button class="btn" id="relay">Neu legen</button><button class="btn fill" id="keep" disabled>Merken</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Sammlung -->
+<section class="screen" id="s2">
+  <h2>Unsere Sammlung</h2>
+  <p class="say" style="margin-bottom:2vh">So sind die 10 Perlen schon gefallen. Welche fehlen noch?</p>
+  <div class="coll" id="coll"></div>
+  <div class="count" id="collCount"></div>
+  <div class="row" style="margin-top:1.5vh"><button class="btn fill" id="selfOpen">Selbst eintragen</button></div>
+</section>
+
+<div class="ov" id="ov">
+  <h2>Selbst eintragen</h2>
+  <p class="say" style="margin:0 0 3vh">Wie können die 10 Perlen noch fallen? Lege sie in die Box und schreibe die Zahlen dazu.</p>
+  <div class="two">
+    <div class="col">
+      <div class="box" id="box2"><div class="wall"></div><div class="half l" id="h2l"></div><div class="half r" id="h2r"></div><span class="side l">links</span><span class="side r">rechts</span></div>
+      <div class="row" style="margin-top:6vh">
+        <button class="addbtn l" id="addL"><span class="dot" style="background:var(--red)"></span>Perle links</button>
+        <button class="addbtn r" id="addR"><span class="dot" style="background:var(--blue)"></span>Perle rechts</button>
+        <button class="btn" id="undo2">Zurück</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="tf" id="tf2"></div>
+      <div class="nums">
+        <div class="col"><button class="num l" id="nl2"></button><span class="numlab" style="color:var(--red)">links</span></div>
+        <div class="col"><button class="num r" id="nr2"></button><span class="numlab" style="color:var(--blue)">rechts</span></div>
+      </div>
+      <div class="msg" id="msg2"></div>
+      <div class="row"><button class="btn" id="selfClose">Abbrechen</button><button class="btn fill" id="selfAdd" disabled>In die Sammlung</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="pad" id="pad"><div class="inner" id="padInner"></div></div>
+
+<nav>
+  <button id="prev" aria-label="zurück">‹</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="weiter">›</button>
+</nav>
+
+<script>
+const N=10;
+/* ---------- Navigation ---------- */
+const screens=[...document.querySelectorAll('.screen')];let cur=0;
+const dots=document.getElementById('dots');
+screens.forEach((_,i)=>{const d=document.createElement('span');d.onclick=()=>go(i);dots.appendChild(d)});
+function go(i){cur=Math.max(0,Math.min(screens.length-1,i));
+  screens.forEach((s,k)=>s.classList.toggle('on',k===cur));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur));
+  prev.disabled=cur===0;next.disabled=cur===screens.length-1;
+  if(typeof ov!=='undefined')ov.classList.remove('on');
+  if(cur===2)renderColl();}
+const prev=document.getElementById('prev'),next=document.getElementById('next');
+prev.onclick=()=>go(cur-1);next.onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(pad.classList.contains('on'))return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+
+/* ---------- Helfer ---------- */
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function makeTF(el){el.innerHTML='';for(let i=0;i<N;i++){const s=document.createElement('div');s.className='slot';el.appendChild(s);}return [...el.children];}
+// Plätze in einer Boxhälfte: unten in Fünferreihen, von links nach rechts
+function spots(side,n){
+  const x0=side==='l'?5.6:58.4, dx=9, y0=85, dy=15;
+  const out=[];for(let i=0;i<n;i++){out.push([x0+(i%5)*dx,y0-Math.floor(i/5)*dy]);}
+  return out;
+}
+function makeBeads(box){
+  box.querySelectorAll('.bead').forEach(b=>b.remove());
+  const arr=[];for(let i=0;i<N;i++){const b=document.createElement('div');b.className='bead';box.appendChild(b);arr.push(b);}
+  return arr;
+}
+function setPos(b,[x,y]){b.style.left=x+'%';b.style.top=y+'%';}
+
+/* ---------- Folie 1: Box kennenlernen ---------- */
+const box0=document.getElementById('box0'),tf0=document.getElementById('tf0'),msg0=document.getElementById('msg0');
+let slots0=makeTF(tf0);const beads0=makeBeads(box0);
+{const p=spots('l',5).concat(spots('r',5));beads0.forEach((b,i)=>setPos(b,p[i]));}
+let counting=false;
+document.getElementById('count0').onclick=async()=>{
+  if(counting)return;counting=true;
+  slots0=makeTF(tf0);msg0.textContent='';
+  beads0.forEach(b=>{b.classList.remove('lit');b.innerHTML='';});
+  const order=beads0;
+  for(let i=0;i<order.length;i++){
+    const b=order[i];b.classList.add('lit');b.innerHTML='<span class="n">'+(i+1)+'</span>';
+    slots0[i].classList.add('f',parseFloat(b.style.left)<50?'r':'b','pop');
+    await wait(750);
+  }
+  msg0.innerHTML='Es sind 10 Perlen: <span style="color:var(--red)">5 links</span> und <span style="color:var(--blue)">5 rechts</span>.';
+  counting=false;
+};
+
+/* ---------- Folie 2: Schütteln ---------- */
+const box1=document.getElementById('box1'),tf1=document.getElementById('tf1'),msg1=document.getElementById('msg1');
+const nl=document.getElementById('nl'),nr=document.getElementById('nr'),keep=document.getElementById('keep');
+let slots1=makeTF(tf1);const beads1=makeBeads(box1);
+let left=0,right=0,placedL=0,placedR=0,valL=null,valR=null,shaking=false;
+{const p=spots('l',5).concat(spots('r',5));beads1.forEach((b,i)=>{setPos(b,p[i]);b.dataset.side=i<5?'l':'r';});left=5;right=5;}
+beads1.forEach(b=>b.onclick=()=>{
+  if(shaking||b.classList.contains('used'))return;
+  b.classList.add('used');
+  let s;
+  if(b.dataset.side==='l'){s=slots1[placedL];placedL++;s.classList.add('f','r','pop');}
+  else{s=slots1[N-1-placedR];placedR++;s.classList.add('f','b','pop');}
+  update();
+});
+function resetLay(){slots1=makeTF(tf1);placedL=placedR=0;beads1.forEach(b=>b.classList.remove('used'));update();}
+function resetNums(){valL=valR=null;nl.textContent='';nr.textContent='';nl.classList.remove('ok');nr.classList.remove('ok');}
+function update(){keep.disabled=!(placedL+placedR===N&&valL!==null&&valR!==null);}
+document.getElementById('relay').onclick=()=>{resetLay();msg1.textContent='';};
+document.getElementById('shake').onclick=async()=>{
+  if(shaking)return;shaking=true;msg1.textContent='';
+  resetLay();resetNums();
+  // Perlen fliegen während des Schüttelns durcheinander
+  box1.classList.remove('shake');void box1.offsetWidth;box1.classList.add('shake');
+  for(let k=0;k<3;k++){beads1.forEach(b=>setPos(b,[8+Math.random()*84,15+Math.random()*70]));await wait(380);}
+  // Ergebnis: jede Perle fällt zufällig nach links oder rechts
+  const sides=beads1.map(()=>Math.random()<.5?'l':'r');
+  left=sides.filter(s=>s==='l').length;right=N-left;
+  const pl=spots('l',left),pr=spots('r',right);let il=0,ir=0;
+  beads1.forEach((b,i)=>{b.dataset.side=sides[i];setPos(b,sides[i]==='l'?pl[il++]:pr[ir++]);});
+  await wait(700);shaking=false;update();
+};
+/* Ziffernblock */
+const pad=document.getElementById('pad'),padInner=document.getElementById('padInner');let padTarget=null;
+for(let i=0;i<=10;i++){const b=document.createElement('button');b.textContent=i;b.onclick=()=>setNum(i);padInner.appendChild(b);}
+{const x=document.createElement('button');x.className='x';x.textContent='Schließen';x.onclick=()=>pad.classList.remove('on');padInner.appendChild(x);}
+pad.onclick=e=>{if(e.target===pad)pad.classList.remove('on');};
+nl.onclick=()=>{padTarget='l';pad.classList.add('on');};
+nr.onclick=()=>{padTarget='r';pad.classList.add('on');};
+function setNum(v){
+  if(padTarget==='l'){valL=v;nl.textContent=v;nl.classList.remove('ok');}
+  else if(padTarget==='r'){valR=v;nr.textContent=v;nr.classList.remove('ok');}
+  else if(padTarget==='l2'){v2L=v;nl2.textContent=v;nl2.classList.remove('ok');}
+  else {v2R=v;nr2.textContent=v;nr2.classList.remove('ok');}
+  pad.classList.remove('on');update();update2();
+}
+/* Merken */
+const found=new Set();
+keep.onclick=()=>{
+  let ok=true;
+  if(valL!==left){ok=false;nl.classList.remove('bad');void nl.offsetWidth;nl.classList.add('bad');}else nl.classList.add('ok');
+  if(valR!==right){ok=false;nr.classList.remove('bad');void nr.offsetWidth;nr.classList.add('bad');}else nr.classList.add('ok');
+  if(!ok){msg1.textContent='Zählt noch einmal nach.';return;}
+  if(found.has(left)){msg1.textContent='Das haben wir schon! Schüttelt noch einmal.';}
+  else{found.add(left);msg1.textContent='Super! Das kommt in unsere Sammlung.';}
+  lastKey=left;keep.disabled=true;
+};
+let lastKey=null;
+
+/* ---------- Folie 3: Sammlung ---------- */
+const coll=document.getElementById('coll');
+function renderColl(){
+  coll.innerHTML='';
+  for(let l=10;l>=0;l--){
+    const card=document.createElement('div');card.className='card'+(l===lastKey?' hl':'');
+    const tf=document.createElement('div');tf.className='tf';const s=makeTF(tf);
+    const lbl=document.createElement('div');lbl.className='lbl';
+    if(found.has(l)){
+      for(let i=0;i<l;i++)s[i].classList.add('f','r');
+      for(let i=0;i<10-l;i++)s[9-i].classList.add('f','b');
+      lbl.innerHTML='<span class="a">'+l+'</span><span class="c">'+(10-l)+'</span>';
+    }
+    card.appendChild(tf);card.appendChild(lbl);coll.appendChild(card);
+  }
+  document.getElementById('collCount').textContent='Gefunden: '+found.size+' von 11';
+}
+/* ---------- Selbst eintragen ---------- */
+const ov=document.getElementById('ov'),tf2=document.getElementById('tf2'),msg2=document.getElementById('msg2');
+const nl2=document.getElementById('nl2'),nr2=document.getElementById('nr2'),selfAdd=document.getElementById('selfAdd');
+let s2=[],c2L=0,c2R=0,v2L=null,v2R=null,hist2=[];
+const box2=document.getElementById('box2');
+function drawBox2(){
+  box2.querySelectorAll('.bead').forEach(b=>b.remove());
+  spots('l',c2L).concat(spots('r',c2R)).forEach(p=>{const b=document.createElement('div');b.className='bead';setPos(b,p);box2.appendChild(b);});
+}
+function draw2(){drawBox2();s2.forEach(x=>x.className='slot');for(let i=0;i<c2L;i++)s2[i].classList.add('f','r');for(let i=0;i<c2R;i++)s2[9-i].classList.add('f','b');}
+function update2(){selfAdd.disabled=!(c2L+c2R===N&&v2L!==null&&v2R!==null);}
+function open2(){s2=makeTF(tf2);c2L=c2R=0;drawBox2();hist2=[];v2L=v2R=null;nl2.textContent='';nr2.textContent='';nl2.classList.remove('ok');nr2.classList.remove('ok');msg2.textContent='';update2();ov.classList.add('on');}
+document.getElementById('selfOpen').onclick=open2;
+document.getElementById('selfClose').onclick=()=>{ov.classList.remove('on');renderColl();};
+document.getElementById('addL').onclick=()=>{if(c2L+c2R>=N){msg2.textContent='Es sind schon 10 Perlen.';return;}c2L++;hist2.push('l');draw2();s2[c2L-1].classList.add('pop');msg2.textContent='';update2();};
+document.getElementById('addR').onclick=()=>{if(c2L+c2R>=N){msg2.textContent='Es sind schon 10 Perlen.';return;}c2R++;hist2.push('r');draw2();s2[10-c2R].classList.add('pop');msg2.textContent='';update2();};
+document.getElementById('h2l').onclick=()=>document.getElementById('addL').click();
+document.getElementById('h2r').onclick=()=>document.getElementById('addR').click();
+document.getElementById('undo2').onclick=()=>{const h=hist2.pop();if(h==='l')c2L--;else if(h==='r')c2R--;draw2();msg2.textContent='';update2();};
+nl2.onclick=()=>{padTarget='l2';pad.classList.add('on');};
+nr2.onclick=()=>{padTarget='r2';pad.classList.add('on');};
+selfAdd.onclick=()=>{
+  let ok=true;
+  if(v2L!==c2L){ok=false;nl2.classList.remove('bad');void nl2.offsetWidth;nl2.classList.add('bad');}else nl2.classList.add('ok');
+  if(v2R!==c2R){ok=false;nr2.classList.remove('bad');void nr2.offsetWidth;nr2.classList.add('bad');}else nr2.classList.add('ok');
+  if(!ok){msg2.textContent='Zählt noch einmal nach.';return;}
+  lastKey=c2L;
+  if(found.has(c2L)){msg2.textContent='Das haben wir schon!';return;}
+  found.add(c2L);msg2.textContent='Super! Das kommt in unsere Sammlung.';
+  selfAdd.disabled=true;
+  setTimeout(()=>{ov.classList.remove('on');renderColl();},1300);
+};
+go(0);
+</script>
+</body></html>
