@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../../assets/biene.png">
+<title>Spiegeln an der Tafel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap">
+<style>
+/* Layout: one slide at a time, full screen for the classroom board; big tap targets, picture in the middle, controls beside it */
+:root{
+  --paper:#FBFAF7; --ink:#1F2328; --muted:#5B5F66; --line:#BDBAB3; --soft:#F1ECE3;
+  --axis:#B4530A; --sun:#F5D488; --sky:#CFE3F5; --blue:#2B6CB0; --good:#2F7D4F; --good-bg:#DDF0E3; --bad:#C2412D; --bad-bg:#F8E1DC;
+  --font:'Andika','Trebuchet MS',system-ui,sans-serif;
+  color-scheme:light;
+}
+[hidden]{display:none!important}
+*{-webkit-tap-highlight-color:transparent}
+.cand:focus:not(:focus-visible),.cell:focus:not(:focus-visible),.btn:focus:not(:focus-visible){outline:none}
+svg *:focus{outline:none}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:20px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));box-sizing:border-box}
+.deck{height:100%;display:flex;flex-direction:column;gap:12px;padding-block:14px;box-sizing:border-box;max-width:1400px;margin:0 auto}
+.slide{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px}
+.head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.badge{width:clamp(44px,5vw,64px);height:clamp(44px,5vw,64px);border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(24px,3vw,36px);flex:none}
+.badge.ref{background:var(--axis)}
+.kicker{font-size:clamp(16px,1.8vw,24px);font-weight:700;color:var(--axis);letter-spacing:.04em;text-transform:uppercase}
+h1,h2{margin:0;font-size:clamp(28px,4.2vw,58px);line-height:1.1;text-wrap:balance}
+.sub{margin:0;font-size:clamp(18px,2.2vw,30px);color:var(--muted)}
+.stage{flex:1;min-height:0;display:flex;gap:20px;align-items:stretch}
+.figure{flex:3 1 0;min-width:0;min-height:0;position:relative;background:#FFFFFF;border:2px solid var(--line);border-radius:22px}
+.figure svg{position:absolute;left:12px;top:12px;width:calc(100% - 24px);height:calc(100% - 24px);display:block}
+.side{flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.btn{font:inherit;font-size:clamp(18px,2vw,26px);font-weight:700;min-height:56px;padding:8px 20px;border-radius:16px;border:3px solid var(--ink);background:#FFFFFF;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.btn:hover{background:var(--soft)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:#3A3F47}
+.btn[aria-pressed="true"]{background:var(--sun)}
+.btn:disabled{opacity:.35;cursor:default}
+.btn:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.feedback{min-height:2.6em;margin:0;font-size:clamp(20px,2.4vw,32px);font-weight:700;border-radius:14px;padding:10px 14px;background:var(--soft)}
+.feedback.good{background:var(--good-bg);color:var(--good)}
+.feedback.bad{background:var(--bad-bg);color:var(--bad)}
+.talk{margin:0;font-size:clamp(17px,1.9vw,26px);color:var(--muted);border-left:5px solid var(--axis);padding-left:12px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dots{display:flex;gap:10px;flex-wrap:wrap}
+.dot{width:18px;height:18px;border-radius:50%;border:3px solid var(--ink);background:transparent;padding:0;cursor:pointer}
+.dot.ref{border-color:var(--axis)}
+.dot[aria-current="true"]{background:var(--ink)}
+.dot.ref[aria-current="true"]{background:var(--axis)}
+/* svg parts */
+.axis{stroke:var(--axis);stroke-width:5}
+.fold{transform-box:view-box;transform-origin:150px 0;transform:scaleX(-1);transition:transform 1.3s ease-in-out}
+.fold.open{transform:scaleX(1)}
+.cand{cursor:pointer}
+.cand .vis{stroke:var(--muted);stroke-width:2.5;stroke-dasharray:9 7;stroke-linecap:round}
+.cand .hit{stroke:transparent;stroke-width:34;pointer-events:stroke}
+.cand:focus-visible .vis{stroke:var(--blue)}
+.cand.ok .vis{stroke:var(--good);stroke-dasharray:none;stroke-width:4}
+.cand.no .vis{stroke:var(--bad);stroke-width:3.5}
+.cell{cursor:pointer}
+.cell rect{fill:#FFFFFF;stroke:var(--line);stroke-width:.04}
+.cell:focus-visible rect{stroke:var(--blue);stroke-width:.12}
+.cell.on rect{fill:var(--ink)}
+.cell.right rect{fill:var(--good)}
+.cell.wrong rect{fill:var(--bad)}
+.cell.missing rect{fill:#E8E4DC;stroke:var(--good);stroke-width:.09;stroke-dasharray:.18 .12}
+.given rect{fill:var(--ink);stroke:var(--line);stroke-width:.04}
+.free rect{fill:#FFFFFF;stroke:var(--line);stroke-width:.04}
+.pt{fill:transparent;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.pt:hover{fill:rgba(43,108,176,.18)}}
+.cards{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-content:center}
+.card{border:3px solid var(--ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#FFFFFF;font-size:clamp(20px,2.3vw,32px)}
+.card svg{width:min(140px,60%);height:auto}
+.tip{display:flex;align-items:center;gap:14px;justify-content:center;font-size:clamp(20px,2.4vw,34px);font-weight:700;border:3px dashed var(--axis);border-radius:18px;padding:12px 16px}
+@media (max-width:700px){
+  .cards{grid-template-columns:1fr}
+  html,body{height:auto}
+  .deck{height:auto;min-height:100%}
+  .stage{flex-direction:column}
+  .figure{flex:none;height:46vh}
+}
+@media (prefers-reduced-motion:reduce){.fold{transition:none}}
+</style>
+</head>
+<body>
+
+<main class="deck" id="deck">
+
+<!-- 1 Einstieg -->
+<section class="slide" data-title="Was ist Spiegeln?">
+  <div class="head"><h1>Wir spiegeln</h1></div>
+  <p class="sub">Die Laterne ist nur halb da. Was passiert, wenn wir sie an der Linie umklappen?</p>
+  <div class="stage">
+    <div class="figure">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Halbe Laterne an einer Spiegelachse, die aufgeklappt werden kann">
+        <defs>
+          <g id="lhalf">
+            <path d="M150 62 C128 40 118 32 104 34" fill="none" stroke="#1F2328" stroke-width="4" stroke-linecap="round"/>
+            <path d="M150 62 L104 62 L112 82 L150 82 Z" fill="#E8833A" stroke="#1F2328" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M150 82 L100 82 C84 130 84 196 100 240 L150 240 Z" fill="#F5D488" stroke="#1F2328" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M126 130 C112 140 112 166 126 176 C118 166 118 140 126 130 Z" fill="#E8833A" stroke="#1F2328" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="114" cy="206" r="8" fill="#E8833A" stroke="#1F2328" stroke-width="3"/>
+            <path d="M150 240 L106 240 L114 260 L150 260 Z" fill="#E8833A" stroke="#1F2328" stroke-width="4" stroke-linejoin="round"/>
+          </g>
+        </defs>
+        <use href="#lhalf"/>
+        <g class="fold" id="fold"><use href="#lhalf" transform="translate(300 0) scale(-1 1)"/></g>
+        <line class="axis" x1="150" y1="10" x2="150" y2="290" stroke-dasharray="12 9"/>
+      </svg>
+    </div>
+    <div class="side">
+      <button class="btn primary" id="foldBtn" type="button">Umklappen</button>
+      <p class="feedback" id="foldMsg" aria-live="polite">Die gestrichelte Linie heißt Spiegelachse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 Aufgabe 1 -->
+<section class="slide axis-task" data-title="Aufgabe 1" hidden>
+  <div class="head"><span class="badge">1</span><h2>Wo ist die Spiegelachse?</h2></div>
+  <p class="sub">Tippe auf eine Linie. Sind beide Seiten gleich?</p>
+  <div class="stage">
+    <div class="figure">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Bild mit vier möglichen Linien zum Antippen">
+        <g data-picid="1">
+          <path d="M60 200 L60 160 C60 140 75 130 95 125 L115 80 C118 72 125 68 135 68 L165 68 C175 68 182 72 185 80 L205 125 C225 130 240 140 240 160 L240 200 Z" fill="#6FA8DC" stroke="#1F2328" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M124 82 L176 82 L194 124 L106 124 Z" fill="#CFE3F5" stroke="#1F2328" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="70" y="198" width="30" height="30" rx="6" fill="#1F2328"/>
+          <rect x="200" y="198" width="30" height="30" rx="6" fill="#1F2328"/>
+          <rect x="54" y="190" width="192" height="14" rx="7" fill="#C9C9C9" stroke="#1F2328" stroke-width="3"/>
+          <circle cx="90" cy="162" r="14" fill="#F5D488" stroke="#1F2328" stroke-width="3"/>
+          <circle cx="210" cy="162" r="14" fill="#F5D488" stroke="#1F2328" stroke-width="3"/>
+          <rect x="124" y="154" width="52" height="22" rx="5" fill="#FFFFFF" stroke="#1F2328" stroke-width="3"/>
+        </g>
+        <g data-picid="2" hidden>
+          <rect x="96" y="66" width="108" height="134" rx="8" fill="#1F2328"/>
+          <rect x="96" y="160" width="108" height="22" fill="#E0574F"/>
+          <rect x="52" y="198" width="196" height="20" rx="10" fill="#1F2328"/>
+          <circle cx="150" cy="171" r="7" fill="#F5D488"/>
+        </g>
+        <g class="cand" data-ok="1" tabindex="0" role="button" aria-label="Senkrechte Linie in der Mitte"><line class="vis" x1="150" y1="16" x2="150" y2="284"/><line class="hit" x1="150" y1="16" x2="150" y2="284"/></g>
+        <g class="cand" data-ok="0" tabindex="0" role="button" aria-label="Senkrechte Linie links"><line class="vis" x1="104" y1="16" x2="104" y2="284"/><line class="hit" x1="104" y1="16" x2="104" y2="284"/></g>
+        <g class="cand" data-ok="0" tabindex="0" role="button" aria-label="Waagerechte Linie"><line class="vis" x1="16" y1="150" x2="284" y2="150"/><line class="hit" x1="16" y1="150" x2="284" y2="150"/></g>
+        <g class="cand" data-ok="0" tabindex="0" role="button" aria-label="Schräge Linie"><line class="vis" x1="34" y1="34" x2="266" y2="266"/><line class="hit" x1="34" y1="34" x2="266" y2="266"/></g>
+      </svg>
+    </div>
+    <div class="side">
+      <div class="row">
+        <button class="btn" type="button" data-pic="1" aria-pressed="true">Bild 1</button>
+        <button class="btn" type="button" data-pic="2" aria-pressed="false">Bild 2</button>
+      </div>
+      <p class="feedback" aria-live="polite">Welche Linie teilt das Bild in zwei gleiche Hälften?</p>
+      <p class="sub">Auf dem Blatt: Zeichne die Achse mit dem Lineal ein.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Aufgabe 2 -->
+<section class="slide" data-title="Aufgabe 2" hidden>
+  <div class="head"><span class="badge">2</span><h2>Muster spiegeln</h2></div>
+  <p class="sub">Male rechts die Kästchen an, die links schwarz sind. Gleich weit weg von der Achse!</p>
+  <div class="stage">
+    <div class="figure"><svg id="pat" viewBox="-0.2 -0.2 8.4 4.4" role="img" aria-label="Muster mit 8 mal 4 Kästchen, rechts antippen"></svg></div>
+    <div class="side">
+      <button class="btn primary" type="button" data-act="check">Prüfen</button>
+      <div class="row">
+        <button class="btn" type="button" data-act="clear">Löschen</button>
+        <button class="btn" type="button" data-act="new">Neues Muster</button>
+      </div>
+      <p class="feedback" aria-live="polite">Tippe rechts auf ein Kästchen.</p>
+      <button class="btn" type="button" data-act="solve">Lösung</button>
+    </div>
+  </div>
+</section>
+
+<!-- 4 Aufgabe 3 -->
+<section class="slide" data-title="Aufgabe 3" hidden>
+  <div class="head"><span class="badge">3</span><h2>Spiegelbild zeichnen</h2></div>
+  <p class="sub">Zähle die Kästchen bis zur Achse. Zähle rechts genauso weit. Tippe auf den Punkt.</p>
+  <div class="stage">
+    <div class="figure"><svg id="draw" viewBox="-0.5 -0.5 15 7" role="img" aria-label="Kästchenraster mit halber Figur, Punkte rechts antippen"></svg></div>
+    <div class="side">
+      <button class="btn" type="button" data-act="count" aria-pressed="false">Zählhilfe</button>
+      <div class="row">
+        <button class="btn" type="button" data-act="undo">Zurück</button>
+        <button class="btn" type="button" data-act="clear">Neu</button>
+      </div>
+      <p class="feedback" aria-live="polite">Wir starten oben an der Achse.</p>
+      <button class="btn" type="button" data-act="solve" aria-pressed="false">Lösung</button>
+    </div>
+  </div>
+</section>
+
+<!-- 5 Jetzt ihr -->
+<section class="slide" data-title="Jetzt ihr" hidden>
+  <div class="head"><h2>Jetzt ihr!</h2></div>
+  <div class="cards">
+    <div class="card">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 44 L44 14 L36 6 L6 36 Z" fill="#FDE9B8" stroke="#1F2328" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 30 L16 34 M18 24 L22 28 M24 18 L28 22 M30 12 L34 16" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/></svg>
+      <strong>1 Achse finden</strong><span>mit dem Lineal</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="12" width="40" height="24" fill="#FFFFFF" stroke="#1F2328" stroke-width="2"/><rect x="14" y="12" width="10" height="12" fill="#1F2328"/><rect x="4" y="24" width="20" height="12" fill="#1F2328"/><path d="M24 8 L24 40" stroke="#B4530A" stroke-width="3"/></svg>
+      <strong>2 Muster malen</strong><span>gleich weit weg</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 L32 16 L38 22 L14 46 L6 46 Z" fill="#FFFFFF" stroke="#1F2328" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 16 L38 10 L44 16 L38 22" fill="#C9C9C9" stroke="#1F2328" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      <strong>3 Spiegelbild zeichnen</strong><span>Kästchen zählen</span>
+    </div>
+  </div>
+  <div class="tip">
+    <svg width="44" height="44" viewBox="0 0 48 48" aria-hidden="true"><rect x="16" y="5" width="16" height="31" rx="2" fill="#CFE3F5" stroke="#1F2328" stroke-width="2.5"/><path d="M20 36 L15 43 M28 36 L33 43 M10 43 L38 43" stroke="#1F2328" stroke-width="2.5" stroke-linecap="round"/></svg>
+    Am Ende: Prüfe mit dem Spiegel!
+  </div>
+</section>
+
+<!-- 6 Reflexion 1 -->
+<section class="slide axis-task" data-title="Reflexion 1" data-ref hidden>
+  <div class="head"><span class="badge ref">1</span><div><div class="kicker">Reflexion</div><h2>Welche Linie ist die Spiegelachse?</h2></div></div>
+  <p class="sub">Tippe auf eine Linie. Wie hast du das herausgefunden?</p>
+  <div class="stage">
+    <div class="figure">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Neues Bild mit vier möglichen Linien zum Antippen">
+        <defs><clipPath id="beeBody"><ellipse cx="150" cy="168" rx="40" ry="64"/></clipPath></defs>
+        <g data-picid="1">
+          <ellipse cx="102" cy="122" rx="44" ry="26" transform="rotate(-25 102 122)" fill="#CFE3F5" stroke="#1F2328" stroke-width="4"/>
+          <ellipse cx="198" cy="122" rx="44" ry="26" transform="rotate(25 198 122)" fill="#CFE3F5" stroke="#1F2328" stroke-width="4"/>
+          <path d="M138 228 L150 252 L162 228 Z" fill="#1F2328"/>
+          <ellipse cx="150" cy="168" rx="40" ry="64" fill="#F5D488"/>
+          <g clip-path="url(#beeBody)" fill="#1F2328"><rect x="100" y="140" width="100" height="16"/><rect x="100" y="172" width="100" height="16"/><rect x="100" y="204" width="100" height="16"/></g>
+          <ellipse cx="150" cy="168" rx="40" ry="64" fill="none" stroke="#1F2328" stroke-width="4"/>
+          <path d="M142 70 C136 52 128 44 116 42 M158 70 C164 52 172 44 184 42" fill="none" stroke="#1F2328" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="150" cy="92" r="28" fill="#1F2328"/>
+          <circle cx="139" cy="88" r="6" fill="#FFFFFF"/><circle cx="161" cy="88" r="6" fill="#FFFFFF"/>
+        </g>
+        <g data-picid="2" hidden>
+          <path d="M60 138 L28 112 M240 138 L272 112" stroke="#1F2328" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="102" cy="152" r="44" fill="#CFE3F5" stroke="#1F2328" stroke-width="7"/>
+          <circle cx="198" cy="152" r="44" fill="#CFE3F5" stroke="#1F2328" stroke-width="7"/>
+          <path d="M140 140 Q150 126 160 140" fill="none" stroke="#1F2328" stroke-width="7" stroke-linecap="round"/>
+        </g>
+        <g class="cand" data-ok="1" tabindex="0" role="button" aria-label="Senkrechte Linie in der Mitte"><line class="vis" x1="150" y1="16" x2="150" y2="284"/><line class="hit" x1="150" y1="16" x2="150" y2="284"/></g>
+        <g class="cand" data-ok="0" tabindex="0" role="button" aria-label="Senkrechte Linie rechts"><line class="vis" x1="196" y1="16" x2="196" y2="284"/><line class="hit" x1="196" y1="16" x2="196" y2="284"/></g>
+        <g class="cand" data-ok="0" tabindex="0" role="button" aria-label="Waagerechte Linie"><line class="vis" x1="16" y1="152" x2="284" y2="152"/><line class="hit" x1="16" y1="152" x2="284" y2="152"/></g>
+        <g class="cand" data-ok="0" tabindex="0" role="button" aria-label="Schräge Linie"><line class="vis" x1="266" y1="34" x2="34" y2="266"/><line class="hit" x1="266" y1="34" x2="34" y2="266"/></g>
+      </svg>
+    </div>
+    <div class="side">
+      <div class="row">
+        <button class="btn" type="button" data-pic="1" aria-pressed="true">Biene</button>
+        <button class="btn" type="button" data-pic="2" aria-pressed="false">Brille</button>
+      </div>
+      <p class="feedback" aria-live="polite">Welche Linie teilt das Bild in zwei gleiche Hälften?</p>
+      <p class="talk">Bei der Brille sieht die waagerechte Linie fast richtig aus. Was stört?</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 Reflexion 2 -->
+<section class="slide" data-title="Reflexion 2" data-ref hidden>
+  <div class="head"><span class="badge ref">2</span><div><div class="kicker">Reflexion</div><h2>Ein Kind hat so gemalt. Stimmt das?</h2></div></div>
+  <p class="sub">Schau genau: Ist das Muster gespiegelt oder nur abgemalt?</p>
+  <div class="stage">
+    <div class="figure"><svg id="pat2" viewBox="-0.2 -0.2 8.4 4.4" role="img" aria-label="Gemaltes Muster zum Überprüfen"></svg></div>
+    <div class="side">
+      <button class="btn primary" type="button" data-act="check">Prüfen</button>
+      <button class="btn" type="button" data-act="clear">Löschen</button>
+      <p class="feedback" aria-live="polite">Was meint ihr? Danach auf „Prüfen“ tippen.</p>
+      <p class="talk">Woran erkennt man, dass ein Muster gespiegelt ist?</p>
+      <button class="btn" type="button" data-act="solve">Lösung</button>
+    </div>
+  </div>
+</section>
+
+<!-- 8 Reflexion 3 -->
+<section class="slide" data-title="Reflexion 3" data-ref hidden>
+  <div class="head"><span class="badge ref">3</span><div><div class="kicker">Reflexion</div><h2>Ist das Spiegelbild richtig?</h2></div></div>
+  <p class="sub">Ein Kind hat die blaue Hälfte gezeichnet. Findet ihr den Fehler?</p>
+  <div class="stage">
+    <div class="figure"><svg id="draw2" viewBox="-0.5 -0.5 15 7" role="img" aria-label="Halbe Figur und gezeichnetes Spiegelbild mit einem Fehler"></svg></div>
+    <div class="side">
+      <button class="btn" type="button" data-act="count" aria-pressed="false">Zählhilfe</button>
+      <div class="row">
+        <button class="btn" type="button" data-act="clear">Selbst zeichnen</button>
+        <button class="btn" type="button" data-act="undo">Zurück</button>
+      </div>
+      <p class="feedback" aria-live="polite">Zählt die Kästchen auf beiden Seiten.</p>
+      <p class="talk">Wie zählt ihr, damit ihr keinen Fehler macht?</p>
+      <button class="btn" type="button" data-act="solve" aria-pressed="false">Lösung</button>
+    </div>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Folien">
+  <button class="btn" type="button" id="prev">Zurück</button>
+  <div class="dots" id="dots"></div>
+  <div class="row">
+    <button class="btn" type="button" id="full">Vollbild</button>
+    <button class="btn primary" type="button" id="next">Weiter</button>
+  </div>
+</nav>
+</main>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+const say=(node,text,kind)=>{node.textContent=text;node.className='feedback'+(kind?' '+kind:'');};
+const onAct=(e,fn)=>{e.addEventListener('click',fn);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fn();}});};
+
+/* --- Folien --- */
+const slides=[...document.querySelectorAll('.slide')];
+const dots=document.getElementById('dots');
+let cur=0;
+slides.forEach((s,i)=>{const d=document.createElement('button');d.className='dot'+(s.hasAttribute('data-ref')?' ref':'');d.type='button';d.setAttribute('aria-label','Folie '+(i+1)+': '+s.dataset.title);d.addEventListener('click',()=>show(i));dots.appendChild(d);});
+function show(i){cur=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.hidden=j!==cur);[...dots.children].forEach((d,j)=>d.setAttribute('aria-current',j===cur?'true':'false'));
+  document.getElementById('prev').disabled=cur===0;document.getElementById('next').disabled=cur===slides.length-1;}
+document.getElementById('prev').addEventListener('click',()=>show(cur-1));
+document.getElementById('next').addEventListener('click',()=>show(cur+1));
+document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('.cand,.cell'))return;if(e.key==='ArrowRight'||e.key==='PageDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(cur-1);});
+document.getElementById('full').addEventListener('click',()=>{try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{});}catch(e){}});
+show(0);
+
+/* --- Klappen --- */
+const fold=document.getElementById('fold'),foldBtn=document.getElementById('foldBtn'),foldMsg=document.getElementById('foldMsg');
+foldBtn.addEventListener('click',()=>{const open=fold.classList.toggle('open');foldBtn.textContent=open?'Zurückklappen':'Umklappen';
+  say(foldMsg,open?'Beide Seiten sind gleich. Das ist ein Spiegelbild!':'Die gestrichelte Linie heißt Spiegelachse.',open?'good':'');});
+
+/* --- Achse antippen (Aufgabe 1 und Reflexion 1) --- */
+document.querySelectorAll('.axis-task').forEach(slide=>{
+  const cands=[...slide.querySelectorAll('.cand')],msg=slide.querySelector('.feedback');
+  const reset=()=>{cands.forEach(c=>c.classList.remove('ok','no'));say(msg,'Welche Linie teilt das Bild in zwei gleiche Hälften?');};
+  cands.forEach(c=>onAct(c,()=>{if(c.dataset.ok==='1'){cands.forEach(x=>x.classList.remove('no'));c.classList.add('ok');say(msg,'Richtig! Links und rechts ist alles gleich.','good');}
+    else{c.classList.add('no');say(msg,'Nein. Die beiden Seiten sind nicht gleich.','bad');}}));
+  slide.querySelectorAll('[data-pic]').forEach(b=>b.addEventListener('click',()=>{
+    slide.querySelectorAll('[data-picid]').forEach(g=>g.toggleAttribute('hidden',g.dataset.picid!==b.dataset.pic));
+    slide.querySelectorAll('[data-pic]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));reset();}));
+});
+
+/* --- Muster spiegeln --- */
+const COLS=8,ROWS=4,HALF=4;
+const key=(c,r)=>c+','+r;
+function randomShape(){ // zusammenhängend über Kanten, berührt die Achse
+  const size=5+Math.floor(Math.random()*4);const r0=Math.floor(Math.random()*ROWS);const set=new Map([[key(HALF-1,r0),[HALF-1,r0]]]);
+  while(set.size<size){const list=[...set.values()];const [c,r]=list[Math.floor(Math.random()*list.length)];
+    const nb=[[c+1,r],[c-1,r],[c,r+1],[c,r-1]].filter(([x,y])=>x>=0&&x<HALF&&y>=0&&y<ROWS&&!set.has(key(x,y)));
+    if(nb.length){const n=nb[Math.floor(Math.random()*nb.length)];set.set(key(n[0],n[1]),n);}}
+  return [...set.values()];}
+function makePattern(slide,svg,given,prefill,startMsg){
+  const msg=slide.querySelector('.feedback');let cells=[];
+  function build(){svg.textContent='';cells=[];const target=new Set(given.map(([c,r])=>key(COLS-1-c,r)));const pre=new Set((prefill||[]).map(([c,r])=>key(c,r)));
+    for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+      if(c<HALF){const g=el('g',{class:given.some(([a,b])=>a===c&&b===r)?'given':'free'},svg);el('rect',{x:c,y:r,width:1,height:1},g);}
+      else{const g=el('g',{class:'cell'+(pre.has(key(c,r))?' on':''),tabindex:'0',role:'button','aria-label':'Kästchen Reihe '+(r+1)+', Spalte '+(c+1)},svg);el('rect',{x:c,y:r,width:1,height:1},g);
+        g.dataset.t=target.has(key(c,r))?'1':'0';
+        onAct(g,()=>{g.classList.remove('right','wrong','missing');g.classList.toggle('on');});cells.push(g);}}
+    el('line',{x1:HALF,y1:-0.15,x2:HALF,y2:ROWS+0.15,stroke:'#B4530A','stroke-width':'.12'},svg);}
+  const act=a=>slide.querySelector('[data-act="'+a+'"]');
+  act('check').addEventListener('click',()=>{let bad=0,miss=0;
+    cells.forEach(g=>{g.classList.remove('right','wrong','missing');const on=g.classList.contains('on'),t=g.dataset.t==='1';
+      if(on&&t)g.classList.add('right');else if(on&&!t){g.classList.add('wrong');bad++;}else if(!on&&t)miss++;});
+    if(bad===0&&miss===0)say(msg,'Super! Das Muster ist richtig gespiegelt.','good');
+    else if(bad>0)say(msg,(bad===1?'Ein Kästchen ist':bad+' Kästchen sind')+' falsch. Zähle von der Achse aus.','bad');
+    else say(msg,miss===1?'Es fehlt noch ein Kästchen.':'Es fehlen noch '+miss+' Kästchen.','bad');});
+  act('solve').addEventListener('click',()=>{cells.forEach(g=>{g.classList.remove('wrong','right','missing');if(g.dataset.t==='1'&&!g.classList.contains('on'))g.classList.add('missing');});say(msg,'Die gestrichelten Kästchen gehören zum Spiegelbild.');});
+  act('clear').addEventListener('click',()=>{cells.forEach(g=>g.classList.remove('on','right','wrong','missing'));say(msg,'Tippe rechts auf ein Kästchen.');});
+  const nw=act('new');if(nw)nw.addEventListener('click',()=>{given=randomShape();prefill=null;build();say(msg,'Neues Muster. Tippe rechts auf ein Kästchen.');});
+  build();say(msg,startMsg);}
+const s3=slides[2],s7=slides[6];
+makePattern(s3,document.getElementById('pat'),[[3,0],[2,0],[2,1],[1,1],[1,2],[0,2],[1,3],[2,3]],null,'Tippe rechts auf ein Kästchen.');
+const g2=[[3,1],[2,1],[1,1],[1,0],[1,2],[1,3],[2,3]];
+makePattern(s7,document.getElementById('pat2'),g2,g2.map(([c,r])=>[c+HALF,r]),'Was meint ihr? Danach auf „Prüfen“ tippen.');
+
+/* --- Spiegelbild zeichnen --- */
+function makeDraw(slide,svg,left,prefill,startMsg){
+  const msg=slide.querySelector('.feedback');const W=14,H=6,AX=7;
+  const target=left.map(([x,y])=>[2*AX-x,y]);const start=[target[0]];
+  let pts=prefill?prefill.map(p=>p.slice()):start.map(p=>p.slice());let showCount=false,showSol=false;
+  const pathD=a=>a.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ');
+  const pid='k'+svg.id;const defs=el('defs',{},svg);const pg=el('pattern',{id:pid,width:1,height:1,patternUnits:'userSpaceOnUse'},defs);
+  el('path',{d:'M1 0 L0 0 L0 1',fill:'none',stroke:'#BDBAB3','stroke-width':'.03'},pg);
+  el('rect',{x:0,y:0,width:W,height:H,fill:'url(#'+pid+')',stroke:'#BDBAB3','stroke-width':'.05'},svg);
+  el('line',{x1:AX,y1:-0.3,x2:AX,y2:H+0.3,stroke:'#B4530A','stroke-width':'.13'},svg);
+  el('path',{d:pathD(left),fill:'none',stroke:'#1F2328','stroke-width':'.12','stroke-linejoin':'round','stroke-linecap':'round'},svg);
+  const countG=el('g',{},svg),solG=el('g',{},svg),userG=el('g',{},svg),hitG=el('g',{},svg);
+  left.forEach(([x,y])=>{if(x===AX)return;const n=AX-x;el('line',{x1:x,y1:y,x2:AX,y2:y,stroke:'#2F7D4F','stroke-width':'.06','stroke-dasharray':'.15 .1'},countG);
+    const t=el('text',{x:x-0.18,y:y-0.14,'text-anchor':'end','font-size':'.5','font-weight':'700',fill:'#2F7D4F','font-family':'Andika, sans-serif'},countG);t.textContent=n;});
+  countG.style.display='none';
+  el('path',{d:pathD(target),fill:'none',stroke:'#2F7D4F','stroke-width':'.1','stroke-dasharray':'.25 .15','stroke-linejoin':'round'},solG);solG.style.display='none';
+  for(let y=0;y<=H;y++)for(let x=0;x<=W;x++){const c=el('circle',{class:'pt',cx:x,cy:y,r:.42},hitG);c.addEventListener('click',()=>add(x,y));}
+  function render(){userG.textContent='';el('path',{d:pathD(pts),fill:'none',stroke:'#2B6CB0','stroke-width':'.12','stroke-linejoin':'round','stroke-linecap':'round'},userG);
+    pts.forEach(([x,y],i)=>el('circle',{cx:x,cy:y,r:i===pts.length-1?.2:.13,fill:'#2B6CB0'},userG));}
+  function check(){const n=pts.length;const ok=pts.every(([x,y],i)=>target[i]&&target[i][0]===x&&target[i][1]===y);
+    if(ok&&n===target.length)say(msg,'Super! Das Spiegelbild ist fertig.','good');
+    else if(ok)say(msg,n===1?'Wir starten oben an der Achse.':'Richtig! Wo ist der nächste Punkt?','good');
+    else say(msg,'Der Punkt passt nicht. Zähle die Kästchen bis zur Achse.','bad');}
+  function add(x,y){const l=pts[pts.length-1];if(l[0]===x&&l[1]===y)return;pts.push([x,y]);render();check();}
+  const act=a=>slide.querySelector('[data-act="'+a+'"]');
+  act('undo').addEventListener('click',()=>{if(pts.length>1)pts.pop();render();check();});
+  act('clear').addEventListener('click',()=>{pts=start.map(p=>p.slice());render();say(msg,'Wir starten oben an der Achse.');});
+  act('count').addEventListener('click',e=>{showCount=!showCount;countG.style.display=showCount?'':'none';e.currentTarget.setAttribute('aria-pressed',String(showCount));});
+  act('solve').addEventListener('click',e=>{showSol=!showSol;solG.style.display=showSol?'':'none';e.currentTarget.setAttribute('aria-pressed',String(showSol));});
+  render();say(msg,startMsg);}
+makeDraw(slides[3],document.getElementById('draw'),[[7,1],[4,1],[4,2],[5,2],[5,4],[3,4],[3,5],[7,5]],null,'Wir starten oben an der Achse.');
+makeDraw(slides[7],document.getElementById('draw2'),[[7,1],[5,1],[5,2],[3,2],[3,5],[7,5]],[[7,1],[9,1],[9,2],[10,2],[10,5],[7,5]],'Zählt die Kästchen auf beiden Seiten.');
+})();
+</script>
+</body>
+</html>
