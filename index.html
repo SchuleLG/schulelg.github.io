@@ -45,6 +45,57 @@
   }
   @media (prefers-reduced-motion: reduce) { .biene { animation: none; } }
 
+  /* Elke, die Biene, mit Sprechblase */
+  .elke {
+    position: relative;
+    display: inline-block;
+    background: none; border: 0; padding: 0;
+    font: inherit; color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .elke:focus-visible { outline: 3px dashed var(--honig-dunkel); outline-offset: 6px; border-radius: 20px; }
+  .sprechblase {
+    position: absolute;
+    left: 78%;
+    top: 4px;
+    width: max-content;
+    max-width: 210px;
+    padding: .7rem 1.1rem;
+    background: #fff;
+    color: var(--braun);
+    border: 3px solid var(--braun);
+    border-radius: 22px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: left;
+    box-shadow: 0 5px 0 rgba(59,42,20,.15);
+    opacity: 0;
+    transform: scale(.6);
+    transform-origin: bottom left;
+    transition: opacity .2s, transform .25s cubic-bezier(.3,1.6,.6,1);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .sprechblase::after {
+    content: "";
+    position: absolute;
+    left: 18px; bottom: -14px;
+    width: 18px; height: 18px;
+    background: #fff;
+    border-right: 3px solid var(--braun);
+    border-bottom: 3px solid var(--braun);
+    transform: rotate(45deg);
+  }
+  .elke.spricht .sprechblase { opacity: 1; transform: scale(1); }
+  @media (max-width: 520px) {
+    .sprechblase { left: 50%; top: -12px; transform: translate(-50%, -100%) scale(.6); transform-origin: bottom center; max-width: 220px; }
+    .elke.spricht .sprechblase { transform: translate(-50%, -100%) scale(1); }
+    .sprechblase::after { left: calc(50% - 9px); }
+    header { padding-top: 5.8rem; }
+  }
+
   h1 {
     margin: .3rem 0 .5rem;
     font-size: clamp(2rem, 5vw, 3.2rem);
@@ -175,7 +226,10 @@
 <body>
 
 <header>
-  <img class="biene" src="assets/biene.png" alt="Die Biene der Bienenklasse">
+  <button class="elke" type="button" aria-label="Elke, die Biene der Bienenklasse">
+    <img class="biene" src="assets/biene.png" alt="">
+    <span class="sprechblase" role="status">Viel Spaß beim Lernen!</span>
+  </button>
   <h1>Lernspiele für die Bienenklasse</h1>
   <p class="untertitel">Such dir ein Spiel aus und leg los!</p>
   <nav>
@@ -263,6 +317,17 @@
 <footer>
   🐝 Läuft im Browser · Tafel, Tablet, PC · ohne Anmeldung, ohne Werbung
 </footer>
+
+<script>
+  // Klick auf Elke: Sprechblase zeigen, nach 3 Sekunden wieder ausblenden
+  const elke = document.querySelector('.elke');
+  let timer;
+  elke.addEventListener('click', () => {
+    elke.classList.add('spricht');
+    clearTimeout(timer);
+    timer = setTimeout(() => elke.classList.remove('spricht'), 3000);
+  });
+</script>
 
 </body>
 </html>
