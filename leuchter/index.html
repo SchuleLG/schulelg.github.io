@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/biene.png">
+<title>Die Leuchter · Bienenklasse</title>
+<style>
+@font-face{font-family:Grund;src:url(data:font/woff2;base64,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) format("woff2");}
+:root{color-scheme:light;--honig:#f6b928;--honig-hell:#fff4d1;--honig-dunkel:#c98a00;--braun:#3b2a14;--gold:#FFD43B;--gold2:#F5B800;--gruen:#3E9B4F;--radius:22px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--honig-hell);color:var(--braun);font-family:Grund,ui-rounded,system-ui,sans-serif;user-select:none;-webkit-user-select:none}
+button{font-family:inherit;color:var(--braun);cursor:pointer;-webkit-text-fill-color:currentColor}
+.screen{display:none;min-height:100vh;flex-direction:column;align-items:center;padding:14px 16px 28px}
+.screen.on{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.hidden{display:none!important}
+
+/* Kopf */
+.top{width:100%;max-width:1000px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:60px}
+.icon{width:60px;height:60px;border-radius:50%;border:3px solid var(--braun);background:#fff;display:grid;place-items:center;padding:0}
+.icon svg{width:30px;height:30px}.icon.off{opacity:.45}
+.prog{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.prog i{width:26px;height:26px;display:block;border-radius:50%;background:#fff;border:3px solid #E4D3A8}
+.prog i.cur{border-color:var(--honig-dunkel)}.prog i.ok{background:var(--gold);border-color:var(--gold2)}.prog i.no{background:#E9E1CF;border-color:#CDBF9E}
+
+/* Start */
+h1{font-size:clamp(34px,6vw,60px);margin:6px 0 0;font-weight:400}
+.hello{display:flex;align-items:center;gap:14px;margin:6px 0 16px;max-width:900px}
+.hello svg{width:clamp(90px,14vw,140px);height:auto}
+.bubble{background:#fff;border-radius:24px;padding:14px 22px;font-size:clamp(22px,3.2vw,34px);box-shadow:0 4px 0 rgba(0,0,0,.07);position:relative}
+.bubble::before{content:"";position:absolute;left:-14px;top:50%;margin-top:-12px;border:12px solid transparent;border-right-color:#fff;border-left:0}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;width:100%;max-width:820px}
+.tile{min-height:clamp(130px,18vh,200px);justify-content:center}
+.tile{background:#fff;border:none;border-radius:var(--radius);box-shadow:0 5px 0 rgba(0,0,0,.09);padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.tile:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.09)}
+.tile .pv{font-size:clamp(30px,5vw,46px);min-height:1.5em;display:flex;align-items:center;gap:.3em}
+.tile .t{font-size:clamp(20px,3vw,28px)}
+.pv .lit{background:var(--gold);border-radius:.12em;padding:0 .04em}
+.pv .gap{display:inline-block;width:.6em;height:.9em;border:3px dashed var(--honig-dunkel);border-radius:.12em;vertical-align:-.1em}
+.pv svg{height:1.3em;width:auto}
+
+/* Aufgabe */
+.task{font-size:clamp(20px,3vw,32px);text-align:center;min-height:2.4em;max-width:900px;margin:2px 0 8px;display:flex;align-items:center;justify-content:center}
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:1000px}
+.pic{width:clamp(120px,min(30vw,24vh),240px);height:clamp(120px,min(30vw,24vh),240px)}
+.pic svg{width:100%;height:100%}
+.go{font-size:clamp(26px,4vw,38px);padding:.35em 1.4em;border-radius:2em;border:none;background:var(--honig);color:var(--braun);margin-top:14px;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+
+/* Wort mit Bögen */
+.word{display:inline-flex;font-size:clamp(60px,min(12vw,13vh),130px);line-height:1.1;margin:6px 0}
+.syl{position:relative;display:inline-flex;padding:0 .04em .32em}
+.syl::after{content:"";position:absolute;left:.08em;right:.08em;bottom:.04em;height:.24em;border:.055em solid var(--braun);border-top:none;border-radius:0 0 50% 50%/0 0 100% 100%;transition:.3s}
+.syl.lit::after{border-color:var(--gold2)}
+.ch{display:inline-block;padding:0 .02em;border-radius:.1em;transition:background .25s}
+.word.tap .ch{cursor:pointer}
+.ch.on{background:var(--gold)}
+.ch.no{animation:wig .4s}
+.ch.slot{display:inline-block;width:.62em;border:.05em dashed var(--honig-dunkel);border-radius:.1em;text-align:center;height:1em;line-height:1;align-self:center}
+.ch.slot.on{border-style:solid;border-color:var(--gold2)}
+@keyframes wig{25%{transform:translateX(-.06em)}75%{transform:translateX(.06em)}}
+
+/* Verbinden */
+.match{position:relative;display:flex;justify-content:space-between;align-items:stretch;width:min(96vw,860px);gap:20px}
+.mcol{display:flex;flex-direction:column;gap:clamp(10px,2vh,20px);justify-content:center;z-index:2}
+.mcard{background:#fff;border:4px solid #E4D3A8;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:6px 14px}
+.mcard.p{width:clamp(100px,min(24vw,17vh),180px);height:clamp(100px,min(24vw,17vh),180px);padding:6px}
+.mcard.p svg{width:100%;height:100%}
+.mcard.s{height:clamp(100px,min(24vw,17vh),180px);min-width:clamp(170px,30vw,300px)}
+.mcard.sel{border-color:var(--honig-dunkel);box-shadow:0 0 0 5px var(--gold)}
+.mcard.done{border-color:var(--gruen);cursor:default}
+.mcard.no{animation:wig2 .4s}
+@keyframes wig2{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.skel{display:inline-flex;font-size:clamp(40px,min(7vw,7vh),68px);line-height:1.1}
+.skel .syl{min-width:1.35em;justify-content:center}
+.skel .ch{background:var(--gold)}
+svg.lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+
+/* Leuchter-Knöpfe */
+.lamps{display:flex;gap:clamp(8px,2vw,18px);flex-wrap:wrap;justify-content:center;margin-top:10px}
+.lampbtn{position:relative;width:clamp(76px,13vw,112px);aspect-ratio:1;border:none;background:none;padding:0;container-type:inline-size}
+.lampbtn svg{position:absolute;inset:0;width:100%;height:100%}
+.lampbtn span{position:absolute;inset:0;display:grid;place-items:center;font-size:44cqw;padding-bottom:4cqw}
+.lampbtn.no{animation:wig2 .4s;opacity:.45}
+
+/* Leuchter oder nicht */
+.big{font-size:clamp(120px,min(30vw,24vh),260px);line-height:1;width:1.3em;height:1.3em;display:grid;place-items:center;border-radius:50%;background:#fff;box-shadow:0 6px 0 rgba(0,0,0,.08);transition:.3s}
+.big.yes{background:var(--gold);box-shadow:0 0 60px 16px rgba(255,212,59,.6)}
+.big.nope{background:#E9E1CF;color:#8b7b5c}
+.yn{display:flex;gap:clamp(16px,4vw,40px);margin-top:20px;flex-wrap:wrap;justify-content:center}
+.ynb{display:flex;flex-direction:column;align-items:center;gap:6px;border:4px solid #E4D3A8;border-radius:24px;background:#fff;padding:12px 20px;font-size:clamp(22px,3vw,30px);min-width:200px}
+.ynb svg{width:clamp(70px,10vw,100px);height:auto}
+.ynb.no{animation:wig2 .4s}
+
+.feedback{font-size:clamp(22px,3.2vw,34px);min-height:1.5em;margin-top:4px;text-align:center}
+.stars{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap;justify-content:center}
+.stars svg{width:clamp(50px,9vw,84px);height:auto}
+.endbtns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.go.dark{background:var(--braun);color:#fff}
+</style>
+</head>
+<body>
+
+<section class="screen on" id="sStart">
+  <h1>Die Leuchter</h1>
+  <div class="hello"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" ><defs><radialGradient id="glow"><stop offset="0" stop-color="#FFE680" stop-opacity="0.9"/>
+<stop offset="0.6" stop-color="#FFE680" stop-opacity="0.35"/><stop offset="1" stop-color="#FFE680" stop-opacity="0"/></radialGradient></defs>
+<circle cx="66" cy="132" r="56" fill="url(#glow)"/>
+<g stroke="#2b2b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M100 60 C96 40 84 28 72 24" fill="none"/>
+  <path d="M120 60 C126 40 140 30 152 28" fill="none"/>
+  <ellipse cx="96" cy="82" rx="34" ry="22" transform="rotate(-30 96 82)" fill="#E6F2FF" fill-opacity="0.85"/>
+  <ellipse cx="128" cy="78" rx="34" ry="20" transform="rotate(25 128 78)" fill="#E6F2FF" fill-opacity="0.85"/>
+  <ellipse cx="70" cy="128" rx="34" ry="30" fill="#FFD43B"/>
+  <ellipse cx="104" cy="112" rx="34" ry="30" fill="#6BBF59"/>
+  <circle cx="138" cy="84" r="28" fill="#7FCC6B"/>
+</g>
+<circle cx="72" cy="24" r="6" fill="#2b2b2b"/><circle cx="152" cy="28" r="6" fill="#2b2b2b"/>
+<circle cx="130" cy="80" r="6" fill="#2b2b2b"/><circle cx="150" cy="80" r="6" fill="#2b2b2b"/>
+<circle cx="132" cy="78" r="2" fill="#fff"/><circle cx="152" cy="78" r="2" fill="#fff"/>
+<path d="M130 94 C136 102 146 102 152 94" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg><div class="bubble">Hallo, ich bin Lumi! Was möchtest du üben?</div></div>
+  <div class="tiles">
+    <button class="tile" data-ex="tap"><span class="pv">S<span class="lit">o</span>f<span class="lit">a</span></span><span class="t">Leuchter finden</span></button>
+    <button class="tile" data-ex="match"><span class="pv"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" ><defs><radialGradient id="glow"><stop offset="0" stop-color="#FFE680" stop-opacity="0.9"/>
+<stop offset="0.6" stop-color="#FFE680" stop-opacity="0.35"/><stop offset="1" stop-color="#FFE680" stop-opacity="0"/></radialGradient></defs>
+<g stroke="#2b2b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+  <rect x="30" y="70" width="140" height="56" rx="14" fill="#D9534F"/>
+  <rect x="14" y="96" width="36" height="54" rx="12" fill="#C9443F"/>
+  <rect x="150" y="96" width="36" height="54" rx="12" fill="#C9443F"/>
+  <rect x="40" y="112" width="120" height="38" rx="8" fill="#E06A63"/>
+  <line x1="100" y1="112" x2="100" y2="150"/>
+  <line x1="30" y1="150" x2="30" y2="166"/><line x1="170" y1="150" x2="170" y2="166"/>
+</g>
+</svg> – <span class="lit">o</span> <span class="lit">a</span></span><span class="t">Bild und Leuchter verbinden</span></button>
+    <button class="tile" data-ex="gap"><span class="pv">L<span class="gap"></span>ma</span><span class="t">Welcher Leuchter fehlt?</span></button>
+    <button class="tile" data-ex="yn"><span class="pv"><span class="lit">e</span> m <span class="lit">U</span> s</span><span class="t">Leuchter oder nicht?</span></button>
+  </div>
+</section>
+
+<section class="screen" id="sGame">
+  <div class="top">
+    <button class="icon" id="home" aria-label="Zum Start"><svg viewBox="0 0 24 24" fill="none" stroke="#3b2a14" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button>
+    <div class="prog" id="prog"></div>
+    <button class="icon" id="spk" aria-label="Vorlesen an/aus"><svg viewBox="0 0 24 24" fill="none" stroke="#3b2a14" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#f6b928"/><path d="M16.5 8.5a5 5 0 010 7"/><path d="M19 6a8.5 8.5 0 010 12"/></svg></button>
+  </div>
+  <div class="task" id="task"></div>
+  <div class="stage" id="stage"></div>
+  <div class="feedback" id="fb"></div>
+  <button class="go hidden" id="nextBtn">Weiter</button>
+</section>
+
+<section class="screen" id="sEnd">
+  <h1>Geschafft!</h1>
+  <div class="hello"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" ><defs><radialGradient id="glow"><stop offset="0" stop-color="#FFE680" stop-opacity="0.9"/>
+<stop offset="0.6" stop-color="#FFE680" stop-opacity="0.35"/><stop offset="1" stop-color="#FFE680" stop-opacity="0"/></radialGradient></defs>
+<circle cx="66" cy="132" r="56" fill="url(#glow)"/>
+<g stroke="#2b2b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M100 60 C96 40 84 28 72 24" fill="none"/>
+  <path d="M120 60 C126 40 140 30 152 28" fill="none"/>
+  <ellipse cx="96" cy="82" rx="34" ry="22" transform="rotate(-30 96 82)" fill="#E6F2FF" fill-opacity="0.85"/>
+  <ellipse cx="128" cy="78" rx="34" ry="20" transform="rotate(25 128 78)" fill="#E6F2FF" fill-opacity="0.85"/>
+  <ellipse cx="70" cy="128" rx="34" ry="30" fill="#FFD43B"/>
+  <ellipse cx="104" cy="112" rx="34" ry="30" fill="#6BBF59"/>
+  <circle cx="138" cy="84" r="28" fill="#7FCC6B"/>
+</g>
+<circle cx="72" cy="24" r="6" fill="#2b2b2b"/><circle cx="152" cy="28" r="6" fill="#2b2b2b"/>
+<circle cx="130" cy="80" r="6" fill="#2b2b2b"/><circle cx="150" cy="80" r="6" fill="#2b2b2b"/>
+<circle cx="132" cy="78" r="2" fill="#fff"/><circle cx="152" cy="78" r="2" fill="#fff"/>
+<path d="M130 94 C136 102 146 102 152 94" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg><div class="bubble" id="endText"></div></div>
+  <div class="stars" id="stars"></div>
+  <div class="endbtns"><button class="go" id="again">Nochmal</button><button class="go dark" id="other">Andere Übung</button></div>
+</section>
+
+<script>
+const PICS={"Sofa": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <rect x=\"30\" y=\"70\" width=\"140\" height=\"56\" rx=\"14\" fill=\"#D9534F\"/>\n  <rect x=\"14\" y=\"96\" width=\"36\" height=\"54\" rx=\"12\" fill=\"#C9443F\"/>\n  <rect x=\"150\" y=\"96\" width=\"36\" height=\"54\" rx=\"12\" fill=\"#C9443F\"/>\n  <rect x=\"40\" y=\"112\" width=\"120\" height=\"38\" rx=\"8\" fill=\"#E06A63\"/>\n  <line x1=\"100\" y1=\"112\" x2=\"100\" y2=\"150\"/>\n  <line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"166\"/><line x1=\"170\" y1=\"150\" x2=\"170\" y2=\"166\"/>\n</g>\n</svg>", "Oma": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <circle cx=\"100\" cy=\"40\" r=\"20\" fill=\"#D8D8D8\"/>\n  <path d=\"M50 120 C44 70 64 46 100 46 C136 46 156 70 150 120 C140 104 132 92 100 90 C68 92 60 104 50 120 Z\" fill=\"#D8D8D8\"/>\n  <ellipse cx=\"100\" cy=\"112\" rx=\"44\" ry=\"50\" fill=\"#F6D2B4\"/>\n  <path d=\"M56 100 C62 74 80 66 100 66 C120 66 138 74 144 100 C130 86 116 80 100 80 C84 80 70 86 56 100 Z\" fill=\"#D8D8D8\"/>\n  <circle cx=\"82\" cy=\"110\" r=\"13\" fill=\"#ffffff\" fill-opacity=\"0.6\"/>\n  <circle cx=\"118\" cy=\"110\" r=\"13\" fill=\"#ffffff\" fill-opacity=\"0.6\"/>\n  <line x1=\"95\" y1=\"110\" x2=\"105\" y2=\"110\"/>\n  <path d=\"M84 138 C94 148 106 148 116 138\" fill=\"none\"/>\n  <path d=\"M58 166 C66 158 82 156 100 160 C118 156 134 158 142 166 L150 196 L50 196 Z\" fill=\"#B565A7\"/>\n</g>\n<circle cx=\"82\" cy=\"110\" r=\"3.5\" fill=\"#2b2b2b\"/><circle cx=\"118\" cy=\"110\" r=\"3.5\" fill=\"#2b2b2b\"/>\n<circle cx=\"70\" cy=\"128\" r=\"6\" fill=\"#F0A8A0\"/><circle cx=\"130\" cy=\"128\" r=\"6\" fill=\"#F0A8A0\"/>\n</svg>", "Lama": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M60 30 L56 12 L68 24 Z\" fill=\"#F1E3C6\"/>\n  <path d=\"M80 28 L84 10 L90 26 Z\" fill=\"#F1E3C6\"/>\n  <rect x=\"70\" y=\"120\" width=\"13\" height=\"56\" rx=\"6\" fill=\"#F1E3C6\"/>\n  <rect x=\"92\" y=\"124\" width=\"13\" height=\"52\" rx=\"6\" fill=\"#F1E3C6\"/>\n  <rect x=\"128\" y=\"124\" width=\"13\" height=\"52\" rx=\"6\" fill=\"#F1E3C6\"/>\n  <rect x=\"150\" y=\"120\" width=\"13\" height=\"56\" rx=\"6\" fill=\"#F1E3C6\"/>\n  <ellipse cx=\"118\" cy=\"118\" rx=\"54\" ry=\"30\" fill=\"#F7EBD3\"/>\n  <path d=\"M60 116 L60 52 Q60 40 72 40 L80 40 Q90 40 90 52 L90 104 Z\" fill=\"#F7EBD3\"/>\n  <ellipse cx=\"66\" cy=\"44\" rx=\"26\" ry=\"16\" fill=\"#F7EBD3\"/>\n  <ellipse cx=\"46\" cy=\"50\" rx=\"11\" ry=\"9\" fill=\"#EADBBB\"/>\n  <path d=\"M166 110 C176 104 180 112 174 120\" fill=\"#F7EBD3\"/>\n</g>\n<circle cx=\"66\" cy=\"38\" r=\"3.5\" fill=\"#2b2b2b\"/>\n<path d=\"M40 52 q5 4 10 0\" stroke=\"#2b2b2b\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\"/>\n<path d=\"M60 70 H90 M60 84 H90\" stroke=\"#E07BAA\" stroke-width=\"6\"/>\n</svg>", "Ananas": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M102 72 C84 52 70 44 56 40 C74 38 90 46 102 60 Z\" fill=\"#5DAA4B\"/>\n  <path d=\"M102 72 C120 52 134 44 148 40 C130 38 114 46 102 60 Z\" fill=\"#5DAA4B\"/>\n  <path d=\"M102 70 C92 50 92 28 100 10 C110 28 112 50 102 70 Z\" fill=\"#6BBF59\"/>\n  <path d=\"M100 72 C86 56 80 40 82 22 C94 36 100 52 104 66 Z\" fill=\"#5DAA4B\"/>\n  <path d=\"M104 72 C118 56 124 40 122 22 C110 36 104 52 100 66 Z\" fill=\"#5DAA4B\"/>\n  <ellipse cx=\"102\" cy=\"128\" rx=\"46\" ry=\"62\" fill=\"#F2B632\"/>\n</g>\n<g stroke=\"#B9791A\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\">\n  <path d=\"M66 96 L130 176\"/><path d=\"M78 76 L146 160\"/><path d=\"M60 128 L110 190\"/>\n  <path d=\"M138 96 L74 176\"/><path d=\"M126 76 L58 160\"/><path d=\"M144 128 L94 190\"/>\n</g>\n<ellipse cx=\"102\" cy=\"128\" rx=\"46\" ry=\"62\" fill=\"none\" stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n</svg>", "Nase": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <ellipse cx=\"100\" cy=\"104\" rx=\"70\" ry=\"80\" fill=\"#F6D2B4\"/>\n  <path d=\"M100 66 C96 90 82 116 78 128 C76 138 86 144 100 144 C114 144 124 138 122 128 C118 116 104 90 100 66 Z\" fill=\"#F0B793\" stroke-width=\"5\"/>\n</g>\n<circle cx=\"70\" cy=\"76\" r=\"7\" fill=\"#2b2b2b\"/><circle cx=\"130\" cy=\"76\" r=\"7\" fill=\"#2b2b2b\"/>\n<path d=\"M76 162 Q100 176 124 162\" stroke=\"#2b2b2b\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/>\n<circle cx=\"91\" cy=\"136\" r=\"4\" fill=\"#B8785A\"/><circle cx=\"109\" cy=\"136\" r=\"4\" fill=\"#B8785A\"/>\n</svg>", "Limo": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M84 20 H116 V44 C116 56 132 62 132 82 V176 Q132 186 122 186 H78 Q68 186 68 176 V82 C68 62 84 56 84 44 Z\" fill=\"#DDF1F8\"/>\n  <path d=\"M71 110 H129 V174 Q129 182 120 182 H80 Q71 182 71 174 Z\" fill=\"#F7D33E\" stroke=\"none\"/>\n  <rect x=\"80\" y=\"12\" width=\"40\" height=\"14\" rx=\"4\" fill=\"#E5533D\"/>\n  <rect x=\"74\" y=\"120\" width=\"52\" height=\"34\" rx=\"6\" fill=\"#ffffff\"/>\n</g>\n<circle cx=\"92\" cy=\"166\" r=\"4\" fill=\"#fff\" opacity=\".8\"/><circle cx=\"108\" cy=\"172\" r=\"3\" fill=\"#fff\" opacity=\".8\"/><circle cx=\"114\" cy=\"160\" r=\"3.5\" fill=\"#fff\" opacity=\".8\"/>\n<circle cx=\"100\" cy=\"137\" r=\"9\" fill=\"#F7D33E\" stroke=\"#2b2b2b\" stroke-width=\"3\"/>\n</svg>", "Esel": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M150 112 C170 120 176 140 168 150\" fill=\"none\"/>\n  <path d=\"M166 148 l8 10 l-12 -2 z\" fill=\"#555\"/>\n  <rect x=\"64\" y=\"104\" width=\"12\" height=\"62\" rx=\"5\" fill=\"#A7A9AC\"/>\n  <rect x=\"88\" y=\"108\" width=\"12\" height=\"58\" rx=\"5\" fill=\"#A7A9AC\"/>\n  <rect x=\"124\" y=\"108\" width=\"12\" height=\"58\" rx=\"5\" fill=\"#A7A9AC\"/>\n  <rect x=\"144\" y=\"104\" width=\"12\" height=\"62\" rx=\"5\" fill=\"#A7A9AC\"/>\n  <ellipse cx=\"110\" cy=\"108\" rx=\"52\" ry=\"30\" fill=\"#BFC1C4\"/>\n  <path d=\"M68 96 C56 80 48 66 46 58 L66 50 C74 64 80 76 86 90 Z\" fill=\"#BFC1C4\"/>\n  <path d=\"M40 20 C30 30 34 48 46 56 C50 44 50 30 40 20 Z\" fill=\"#BFC1C4\"/>\n  <path d=\"M60 14 C54 28 56 44 64 52 C70 40 70 26 60 14 Z\" fill=\"#BFC1C4\"/>\n  <ellipse cx=\"44\" cy=\"68\" rx=\"24\" ry=\"18\" transform=\"rotate(-25 44 68)\" fill=\"#BFC1C4\"/>\n  <ellipse cx=\"30\" cy=\"78\" rx=\"12\" ry=\"10\" fill=\"#E3E1DC\"/>\n</g>\n<circle cx=\"48\" cy=\"60\" r=\"4\" fill=\"#2b2b2b\"/>\n<circle cx=\"27\" cy=\"76\" r=\"2.5\" fill=\"#2b2b2b\"/>\n\n</svg>", "Ufo": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M62 152 L46 186 M138 152 L154 186\" fill=\"none\" stroke=\"#9AA6C6\"/>\n  <path d=\"M56 110 C56 44 144 44 144 110 Z\" fill=\"#BFE4F5\"/>\n  <path d=\"M12 118 C20 96 180 96 188 118 C180 142 20 142 12 118 Z\" fill=\"#9AA6C6\"/>\n</g>\n<circle cx=\"86\" cy=\"78\" r=\"6\" fill=\"#2b2b2b\"/><circle cx=\"114\" cy=\"78\" r=\"6\" fill=\"#2b2b2b\"/>\n<path d=\"M86 92 q14 9 28 0\" stroke=\"#2b2b2b\" stroke-width=\"3.5\" fill=\"none\" stroke-linecap=\"round\"/>\n<g stroke=\"#2b2b2b\" stroke-width=\"3\"><circle cx=\"40\" cy=\"120\" r=\"6\" fill=\"#FFD43B\"/><circle cx=\"70\" cy=\"126\" r=\"6\" fill=\"#E5533D\"/><circle cx=\"100\" cy=\"128\" r=\"6\" fill=\"#6BBF59\"/><circle cx=\"130\" cy=\"126\" r=\"6\" fill=\"#FFD43B\"/><circle cx=\"160\" cy=\"120\" r=\"6\" fill=\"#E5533D\"/></g>\n</svg>", "Melone": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M14 70 A86 86 0 0 0 186 70 Z\" fill=\"#3E9B4F\"/>\n  <path d=\"M26 70 A74 74 0 0 0 174 70 Z\" fill=\"#DFF0C9\" stroke=\"none\"/>\n  <path d=\"M34 70 A66 66 0 0 0 166 70 Z\" fill=\"#EF5A5A\" stroke=\"none\"/>\n  <line x1=\"14\" y1=\"70\" x2=\"186\" y2=\"70\"/>\n</g>\n<g fill=\"#2b2b2b\">\n  <ellipse cx=\"70\" cy=\"92\" rx=\"4\" ry=\"6\"/><ellipse cx=\"100\" cy=\"100\" rx=\"4\" ry=\"6\"/><ellipse cx=\"130\" cy=\"92\" rx=\"4\" ry=\"6\"/>\n  <ellipse cx=\"84\" cy=\"118\" rx=\"4\" ry=\"6\"/><ellipse cx=\"116\" cy=\"118\" rx=\"4\" ry=\"6\"/><ellipse cx=\"100\" cy=\"132\" rx=\"4\" ry=\"6\"/>\n</g>\n</svg>", "Insel": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<path d=\"M0 150 Q25 140 50 150 T100 150 T150 150 T200 150 V200 H0 Z\" fill=\"#7FC4E8\"/>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M30 152 C50 118 150 118 170 152 Z\" fill=\"#F2D38A\"/>\n  <path d=\"M100 134 C100 104 106 78 114 56\" fill=\"none\" stroke=\"#8A5A2B\" stroke-width=\"12\"/>\n  <path d=\"M100 134 C100 104 106 78 114 56\" fill=\"none\" stroke=\"#2b2b2b\" stroke-width=\"3\" stroke-dasharray=\"2 10\"/>\n  <ellipse cx=\"88\" cy=\"52\" rx=\"32\" ry=\"11\" transform=\"rotate(15 88 52)\" fill=\"#5DAA4B\"/>\n  <ellipse cx=\"142\" cy=\"52\" rx=\"32\" ry=\"11\" transform=\"rotate(-15 142 52)\" fill=\"#5DAA4B\"/>\n  <ellipse cx=\"94\" cy=\"70\" rx=\"28\" ry=\"10\" transform=\"rotate(45 94 70)\" fill=\"#6BBF59\"/>\n  <ellipse cx=\"136\" cy=\"72\" rx=\"28\" ry=\"10\" transform=\"rotate(-45 136 72)\" fill=\"#6BBF59\"/>\n</g>\n<circle cx=\"110\" cy=\"62\" r=\"6\" fill=\"#8A5A2B\" stroke=\"#2b2b2b\" stroke-width=\"2\"/><circle cx=\"121\" cy=\"64\" r=\"6\" fill=\"#8A5A2B\" stroke=\"#2b2b2b\" stroke-width=\"2\"/>\n</svg>", "Ofen": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <rect x=\"34\" y=\"28\" width=\"132\" height=\"150\" rx=\"10\" fill=\"#E8E8E8\"/>\n  <rect x=\"34\" y=\"28\" width=\"132\" height=\"30\" rx=\"10\" fill=\"#CFCFCF\"/>\n  <rect x=\"50\" y=\"74\" width=\"100\" height=\"84\" rx=\"8\" fill=\"#3A3A3A\"/>\n  <rect x=\"58\" y=\"82\" width=\"84\" height=\"54\" rx=\"6\" fill=\"#F2A541\" stroke-width=\"3\"/>\n  <line x1=\"60\" y1=\"66\" x2=\"140\" y2=\"66\" stroke-width=\"6\"/>\n</g>\n<g stroke=\"#2b2b2b\" stroke-width=\"3\" fill=\"#888\"><circle cx=\"58\" cy=\"43\" r=\"7\"/><circle cx=\"82\" cy=\"43\" r=\"7\"/><circle cx=\"118\" cy=\"43\" r=\"7\"/><circle cx=\"142\" cy=\"43\" r=\"7\"/></g>\n<path d=\"M88 130 C84 118 96 112 94 100 C104 108 112 116 108 130 Z\" fill=\"#E5533D\"/>\n</svg>", "Salami": "<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" ><defs><radialGradient id=\"glow\"><stop offset=\"0\" stop-color=\"#FFE680\" stop-opacity=\"0.9\"/>\n<stop offset=\"0.6\" stop-color=\"#FFE680\" stop-opacity=\"0.35\"/><stop offset=\"1\" stop-color=\"#FFE680\" stop-opacity=\"0\"/></radialGradient></defs>\n<g stroke=\"#2b2b2b\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n  <path d=\"M30 92 C30 70 50 64 70 64 H150 C170 64 186 78 186 100 C186 122 170 134 150 134 H70 C50 134 30 116 30 92 Z\" fill=\"#B5473A\"/>\n  <ellipse cx=\"60\" cy=\"150\" rx=\"34\" ry=\"26\" fill=\"#C9564A\"/>\n  <ellipse cx=\"140\" cy=\"164\" rx=\"26\" ry=\"20\" fill=\"#C9564A\"/>\n</g>\n<g fill=\"#F6E1D7\">\n  <circle cx=\"50\" cy=\"144\" r=\"4\"/><circle cx=\"66\" cy=\"156\" r=\"5\"/><circle cx=\"72\" cy=\"140\" r=\"3.5\"/><circle cx=\"48\" cy=\"160\" r=\"3\"/>\n  <circle cx=\"134\" cy=\"160\" r=\"4\"/><circle cx=\"148\" cy=\"170\" r=\"3\"/><circle cx=\"146\" cy=\"156\" r=\"3\"/>\n  <circle cx=\"90\" cy=\"84\" r=\"3\"/><circle cx=\"120\" cy=\"100\" r=\"3.5\"/><circle cx=\"150\" cy=\"86\" r=\"3\"/><circle cx=\"70\" cy=\"108\" r=\"3\"/>\n</g>\n<path d=\"M30 92 C20 88 12 82 10 76\" stroke=\"#2b2b2b\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/>\n</svg>"};
+const LAMP=`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" ><defs><radialGradient id="glow"><stop offset="0" stop-color="#FFE680" stop-opacity="0.9"/>
+<stop offset="0.6" stop-color="#FFE680" stop-opacity="0.35"/><stop offset="1" stop-color="#FFE680" stop-opacity="0"/></radialGradient></defs><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(0 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(30 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(60 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(90 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(120 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(150 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(180 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(210 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(240 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(270 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(300 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#F5B800" transform="rotate(330 100 100)"/><circle cx="100" cy="100" r="62" fill="#FFD43B" stroke="#F5B800" stroke-width="5"/></svg>`;
+const WORDS=[ // Wort, Silben, mit Bild?
+ ['Sofa','So-fa'],['Oma','O-ma'],['Lama','La-ma'],['Ananas','A-na-nas'],['Nase','Na-se'],['Limo','Li-mo'],
+ ['Esel','E-sel'],['Ufo','U-fo'],['Melone','Me-lo-ne'],['Insel','In-sel'],['Ofen','O-fen'],['Salami','Sa-la-mi']];
+const EXTRA=[['Mama','Ma-ma'],['lila','li-la'],['Name','Na-me'],['malen','ma-len'],['lesen','le-sen'],['Lose','Lo-se'],['Mia','Mi-a'],['Emil','E-mil']];
+const VOW=/[aeiouAEIOU]/;
+const CONS='MLSFNmlsfn';
+const STAR='<svg viewBox="0 0 100 100"><path d="M50 6l13 28 30 3-23 20 7 30-27-16-27 16 7-30L7 37l30-3z" fill="FILL" stroke="#c98a00" stroke-width="5" stroke-linejoin="round"/></svg>';
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* ---------- Vorlesen ---------- */
+let voiceOn=true,deVoice=null,lastSay='';
+function pickVoice(){try{const v=speechSynthesis.getVoices();deVoice=v.find(x=>/^de/i.test(x.lang)&&/premium|enhanced|natural|google/i.test(x.name))||v.find(x=>/^de/i.test(x.lang))||null;}catch(e){}}
+try{pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}catch(e){}
+function say(t){if(!voiceOn||!t)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';if(deVoice)u.voice=deVoice;u.rate=.9;speechSynthesis.speak(u);}catch(e){}}
+const spk=document.getElementById('spk');
+spk.onclick=()=>{voiceOn=!voiceOn;spk.classList.toggle('off',!voiceOn);if(voiceOn)say(lastSay);else try{speechSynthesis.cancel()}catch(e){}};
+function setTask(t,speech){document.getElementById('task').textContent=t;lastSay=speech||t;say(lastSay);}
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));window.scrollTo(0,0);}
+
+/* ---------- Bausteine ---------- */
+function picEl(w){const d=document.createElement('div');d.className='pic';d.innerHTML=PICS[w]||'';d.onclick=()=>say(w);return d;}
+function wordEl(syls,opts={}){
+  const el=document.createElement('div');el.className='word'+(opts.tap?' tap':'');
+  let pos=0;
+  syls.split('-').forEach(sy=>{
+    const s=document.createElement('span');s.className='syl';
+    [...sy].forEach(c=>{
+      const ch=document.createElement('span');
+      if(opts.gap===pos){ch.className='ch slot';ch.dataset.want=c;ch.innerHTML='&nbsp;';}
+      else{ch.className='ch'+(VOW.test(c)?' v':'');ch.textContent=c;}
+      pos++;s.appendChild(ch);
+    });
+    el.appendChild(s);
+  });
+  return el;
+}
+
+/* ---------- Ablauf ---------- */
+let ex=null,N=5,ti=0,results=[],pool=[];
+const stage=document.getElementById('stage'),fb=document.getElementById('fb'),nextBtn=document.getElementById('nextBtn'),prog=document.getElementById('prog');
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>start(t.dataset.ex));
+document.getElementById('home').onclick=()=>{try{speechSynthesis.cancel()}catch(e){};show('sStart');};
+document.getElementById('again').onclick=()=>start(ex);
+document.getElementById('other').onclick=()=>{show('sStart');say('Was möchtest du üben?');};
+function start(e){
+  ex=e;N=e==='yn'?10:5;ti=0;results=[];
+  pool=shuffle(e==='tap'?WORDS.concat(EXTRA):WORDS);
+  prog.innerHTML='';for(let i=0;i<N;i++)prog.appendChild(document.createElement('i'));
+  show('sGame');next();
+}
+function next(){
+  [...prog.children].forEach((p,k)=>p.classList.toggle('cur',k===ti));
+  stage.innerHTML='';fb.textContent='';nextBtn.classList.add('hidden');
+  ({tap:exTap,match:exMatch,gap:exGap,yn:exYN})[ex]();
+}
+function done(ok,text){
+  const p=prog.children[ti];p.classList.remove('cur');p.classList.add(ok?'ok':'no');
+  results.push(ok);fb.textContent=text;say(text);
+  nextBtn.classList.remove('hidden');
+}
+nextBtn.onclick=()=>{ti++;if(ti<N)next();else finish();};
+function finish(){
+  const s=results.filter(Boolean).length;
+  document.getElementById('stars').innerHTML=results.map(r=>STAR.replace('FILL',r?'#f6b928':'#efe6d0')).join('');
+  const t='Du hast '+(s===1?'einen Stern':s+' Sterne')+'.';
+  document.getElementById('endText').textContent=t;show('sEnd');say('Geschafft! '+t);
+}
+function anzahl(n){return['keinen','einen','zwei','drei','vier'][n]||n;}
+
+/* ---------- 1 Leuchter finden ---------- */
+function exTap(){
+  const [w,syls]=pool[ti%pool.length];
+  setTask('Tippe alle Leuchter an.','Tippe alle Leuchter an. '+w+'.');
+  if(PICS[w])stage.appendChild(picEl(w));
+  const el=wordEl(syls,{tap:true});stage.appendChild(el);
+  const need=el.querySelectorAll('.ch.v').length;let found=0,miss=0;
+  el.querySelectorAll('.ch').forEach(ch=>ch.onclick=()=>{
+    if(found===need)return;
+    if(ch.classList.contains('v')){
+      if(ch.classList.contains('on'))return;
+      ch.classList.add('on');ch.parentElement.classList.add('lit');found++;
+      if(found===need)done(miss===0,'Super! '+w+' hat '+anzahl(need)+' Leuchter.');
+    }else{miss++;ch.classList.remove('no');void ch.offsetWidth;ch.classList.add('no');fb.textContent='Das ist kein Leuchter.';}
+  });
+}
+
+/* ---------- 2 Verbinden ---------- */
+function pattern(syls){return syls.split('-').map(s=>[...s].filter(c=>VOW.test(c)).join('')).join('-');}
+function exMatch(){
+  setTask('Verbinde jedes Bild mit seinen Leuchtern.','Verbinde jedes Bild mit seinen Leuchtern. Tippe zuerst ein Bild an.');
+  // drei Wörter mit verschiedenen Leuchter-Mustern
+  const pick=[];const seen=new Set();
+  for(const w of shuffle(WORDS)){const p=pattern(w[1]).toLowerCase();if(!seen.has(p)){seen.add(p);pick.push(w);}if(pick.length===3)break;}
+  const wrap=document.createElement('div');wrap.className='match';
+  const L=document.createElement('div');L.className='mcol';const R=document.createElement('div');R.className='mcol';
+  const lines=document.createElementNS('http://www.w3.org/2000/svg','svg');lines.setAttribute('class','lines');
+  wrap.append(L,lines,R);stage.appendChild(wrap);
+  let sel=null,miss=0,ok=0;const pairs=[];
+  function drawLines(){
+    const br=wrap.getBoundingClientRect();lines.innerHTML='';
+    pairs.forEach(([a,b])=>{const ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+      const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',ra.right-br.left);l.setAttribute('y1',ra.top+ra.height/2-br.top);
+      l.setAttribute('x2',rb.left-br.left);l.setAttribute('y2',rb.top+rb.height/2-br.top);
+      l.setAttribute('stroke','#F5B800');l.setAttribute('stroke-width','8');l.setAttribute('stroke-linecap','round');lines.appendChild(l);});
+  }
+  window.onresize=drawLines;
+  function tryPair(a,b){ // a = Bild, b = Leuchter-Karte
+    if(a.dataset.w===b.dataset.w){
+      [a,b].forEach(x=>{x.classList.remove('sel');x.classList.add('done');});pairs.push([a,b]);drawLines();ok++;sel=null;
+      if(ok===3)done(miss===0,miss===0?'Super! Alles richtig verbunden.':'Geschafft! Alles ist verbunden.');
+    }else{miss++;[a,b].forEach(x=>{x.classList.remove('no','sel');void x.offsetWidth;x.classList.add('no');});sel=null;fb.textContent='Schau noch einmal genau.';}
+  }
+  function click(card){
+    if(card.classList.contains('done'))return;
+    if(card.classList.contains('p'))say(card.dataset.w);
+    if(!sel){sel=card;card.classList.add('sel');return;}
+    if(sel===card){card.classList.remove('sel');sel=null;return;}
+    const isP=c=>c.classList.contains('p');
+    if(isP(sel)===isP(card)){sel.classList.remove('sel');sel=card;card.classList.add('sel');return;}
+    isP(sel)?tryPair(sel,card):tryPair(card,sel);
+  }
+  shuffle(pick).forEach(([w])=>{const c=document.createElement('button');c.className='mcard p';c.dataset.w=w;c.innerHTML=PICS[w];c.onclick=()=>click(c);L.appendChild(c);});
+  shuffle(pick).forEach(([w,syls])=>{
+    const c=document.createElement('button');c.className='mcard s';c.dataset.w=w;
+    const sk=document.createElement('div');sk.className='skel';
+    pattern(syls).split('-').forEach(v=>{const s=document.createElement('span');s.className='syl lit';
+      [...v].forEach(x=>{const ch=document.createElement('span');ch.className='ch';ch.textContent=x;s.appendChild(ch);});sk.appendChild(s);});
+    c.appendChild(sk);c.onclick=()=>click(c);R.appendChild(c);
+  });
+}
+
+/* ---------- 3 Welcher Leuchter fehlt? ---------- */
+function exGap(){
+  const [w,syls]=pool[ti%pool.length];
+  const letters=[...syls.replace(/-/g,'')];
+  const vpos=letters.map((c,i)=>VOW.test(c)?i:-1).filter(i=>i>=0);
+  const gap=rnd(vpos);const want=letters[gap];
+  setTask('Welcher Leuchter fehlt?','Welcher Leuchter fehlt? '+w+'.');
+  stage.appendChild(picEl(w));
+  const el=wordEl(syls,{gap});stage.appendChild(el);
+  const slot=el.querySelector('.slot');
+  const row=document.createElement('div');row.className='lamps';stage.appendChild(row);
+  let miss=0,fin=false;
+  const big=gap===0;
+  'aeiou'.split('').forEach(v=>{
+    const b=document.createElement('button');b.className='lampbtn';
+    const shown=big?v.toUpperCase():v;
+    b.innerHTML=LAMP+'<span>'+shown+'</span>';
+    b.onclick=()=>{
+      if(fin)return;
+      if(shown===want){fin=true;slot.textContent=want;slot.className='ch v on';slot.parentElement.classList.add('lit');
+        done(miss===0,'Richtig! '+w+'.');}
+      else{miss++;b.classList.remove('no');void b.offsetWidth;b.classList.add('no');fb.textContent='Sprich das Wort langsam. Welcher Leuchter passt?';}
+    };
+    row.appendChild(b);
+  });
+}
+
+/* ---------- 4 Leuchter oder nicht? ---------- */
+let lastLetter='';
+function exYN(){
+  let c;do{c=Math.random()<.5?rnd('aeiouAEIOU'):rnd(CONS);}while(c===lastLetter);lastLetter=c;
+  setTask('Ist das ein Leuchter?');
+  const big=document.createElement('div');big.className='big';big.textContent=c;stage.appendChild(big);
+  const yn=document.createElement('div');yn.className='yn';stage.appendChild(yn);
+  const isV=VOW.test(c);let fin=false,miss=0;
+  [[true,LAMP,'Leuchter'],[false,LAMP_OFF,'kein Leuchter']].forEach(([val,ic,t])=>{
+    const b=document.createElement('button');b.className='ynb';b.innerHTML=ic+'<span>'+t+'</span>';
+    b.onclick=()=>{
+      if(fin)return;
+      if(val===isV){fin=true;big.classList.add(isV?'yes':'nope');
+        done(miss===0,isV?'Richtig! '+c+' ist ein Leuchter.':'Richtig! '+c+' ist kein Leuchter.');}
+      else{miss++;b.classList.remove('no');void b.offsetWidth;b.classList.add('no');fb.textContent='Schau noch einmal genau.';}
+    };
+    yn.appendChild(b);
+  });
+}
+const LAMP_OFF=`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" ><defs><radialGradient id="glow"><stop offset="0" stop-color="#FFE680" stop-opacity="0.9"/>
+<stop offset="0.6" stop-color="#FFE680" stop-opacity="0.35"/><stop offset="1" stop-color="#FFE680" stop-opacity="0"/></radialGradient></defs><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(0 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(30 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(60 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(90 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(120 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(150 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(180 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(210 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(240 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(270 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(300 100 100)"/><rect x="95" y="12" width="10" height="20" rx="5" fill="#B9AE97" transform="rotate(330 100 100)"/><circle cx="100" cy="100" r="62" fill="#E4DCCB" stroke="#B9AE97" stroke-width="5"/></svg>`;
+</script>
+</body>
+</html>
