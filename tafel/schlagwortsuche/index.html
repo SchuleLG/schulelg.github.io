@@ -114,6 +114,15 @@ ol.auftrag li.on{opacity:1}
 .tctl{display:flex;flex-direction:column;align-items:center;gap:1vh}
 .sbtn{font-family:inherit;font-size:clamp(14px,1.3vw,20px);padding:.3em .9em;border-radius:2em;border:2px solid var(--orange);background:transparent;color:var(--orange);cursor:pointer}
 .sbtn.fill{background:var(--orange);color:var(--ink)}
+.auftragrow{display:flex;align-items:center;gap:3vw}
+.abthumb{background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.6vh;font-family:inherit;color:var(--soft);font-size:clamp(14px,1.4vw,20px)}
+.abthumb img{height:clamp(140px,24vh,260px);width:auto;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.35);transform:rotate(2deg);transition:.25s}
+.abthumb:hover img{transform:rotate(0) scale(1.04)}
+.abover{position:fixed;inset:0;background:rgba(20,28,48,.92);display:none;flex-direction:column;align-items:center;justify-content:center;gap:2vh;z-index:50}
+.abover.on{display:flex;animation:fade .3s}
+.abover img{max-height:84vh;max-width:92vw;background:#fff;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.abbar{display:flex;gap:1vw}
+.abbar a{text-decoration:none}
 .teacher{position:fixed;top:12px;right:18px;font-size:15px;color:#7D8AB0}
 </style></head><body>
 
@@ -245,12 +254,15 @@ ol.auftrag li.on{opacity:1}
 <!-- 12 Auftrag -->
 <section class="screen" id="s12">
   <h2>Jetzt bist du dran!</h2>
-  <ol class="auftrag" id="auftrag">
+  <div class="auftragrow">
+    <ol class="auftrag" id="auftrag">
     <li>Schreibe deine Forscherfrage auf.</li>
     <li>Finde 1 bis 3 Schlagwörter.</li>
     <li>Probiere sie in zwei Suchmaschinen aus.</li>
     <li>Notiere die beste Seite in deinem Rechercheplan.</li>
   </ol>
+    <button class="abthumb" id="abOpen" aria-label="Arbeitsblatt öffnen"><img src="ab_schlagwortsuche.png" alt="Arbeitsblatt Schlagwortsuche"><span>Arbeitsblatt</span></button>
+  </div>
   <div class="tbox">
     <svg class="sand" viewBox="0 0 100 160" aria-label="Sanduhr">
       <defs>
@@ -280,6 +292,11 @@ ol.auftrag li.on{opacity:1}
   <p class="merk" style="font-size:clamp(30px,4vw,62px)">Was hast du gemacht, als du nichts gefunden hast?</p>
 </section>
 
+
+<div class="abover" id="abOver">
+  <img src="ab_schlagwortsuche.png" alt="Arbeitsblatt Schlagwortsuche">
+  <div class="abbar"><a class="sbtn fill" href="AB_Schlagwortsuche.pdf" target="_blank" rel="noopener">Als PDF öffnen</a><button class="sbtn" id="abClose">Schließen ✕</button></div>
+</div>
 <nav>
   <button id="prev" aria-label="zurück">‹</button>
   <div class="dots" id="dots"></div>
@@ -303,6 +320,7 @@ document.getElementById('prev').onclick=()=>go(cur-1);
 document.getElementById('next').onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{
   if(document.activeElement && document.activeElement.tagName==='INPUT')return;
+  if(document.getElementById('abOver').classList.contains('on'))return;
   if(e.key==='ArrowRight'||e.key==='PageDown')go(cur+1);
   if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1);
 });
@@ -420,5 +438,11 @@ document.getElementById('tStart').onclick=()=>{
 document.getElementById('tPause').onclick=()=>{clearInterval(tInt);tInt=null;show();};
 document.getElementById('tReset').onclick=()=>setMin(tMin);
 show();
+/* Arbeitsblatt-Vorschau */
+const abOver=document.getElementById('abOver');
+document.getElementById('abOpen').onclick=()=>abOver.classList.add('on');
+document.getElementById('abClose').onclick=()=>abOver.classList.remove('on');
+abOver.addEventListener('click',e=>{if(e.target===abOver||e.target.tagName==='IMG')abOver.classList.remove('on')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')abOver.classList.remove('on')});
 </script>
 </body></html>
