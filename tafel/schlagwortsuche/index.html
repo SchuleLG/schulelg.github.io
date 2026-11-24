@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../../assets/biene.png">
+<title>Schlagwort-Detektive</title>
+<style>
+:root{--night:#1F2A44;--night2:#2A3A5E;--orange:#F2A65A;--orange2:#E07A1F;--soft:#C9D3EA;--paper:#FBF6EC;--ink:#1F2A44;--blue:#5B9BE0;--green:#6BBF59;--grey:#7D88A3}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--night);color:#fff;font-family:"Andika","Nunito",ui-rounded,"SF Pro Rounded","Segoe UI",system-ui,sans-serif;overflow:hidden;user-select:none}
+.screen{position:absolute;inset:0 0 96px 0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:3vh 5vw;text-align:center;gap:2.2vh}
+.screen.on{display:flex;animation:fade .5s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+h1{font-size:clamp(44px,7vw,104px);margin:0;color:var(--orange);line-height:1.05}
+h2{font-size:clamp(30px,4.2vw,60px);margin:0;color:var(--orange)}
+p.say{font-size:clamp(22px,2.6vw,40px);line-height:1.4;max-width:1400px;margin:0;color:#EEF2FB}
+.hint{font-size:clamp(16px,1.6vw,24px);color:var(--soft);margin:0}
+.lupe{width:clamp(120px,15vw,220px);height:auto}
+.lupe.wobble{animation:wob 3s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg) translate(6px,-10px)}}
+/* Navigation */
+nav{position:fixed;left:0;right:0;bottom:0;height:96px;display:flex;align-items:center;justify-content:space-between;padding:0 3vw;background:rgba(0,0,0,.18)}
+nav button{font-family:inherit;font-size:30px;width:150px;height:70px;border-radius:36px;border:3px solid var(--soft);background:transparent;color:#fff;cursor:pointer}
+nav button:disabled{opacity:.25}
+.dots{display:flex;gap:14px}
+.dots span{width:18px;height:18px;border-radius:50%;background:#3A4C7A;cursor:pointer}
+.dots span.on{background:var(--orange);box-shadow:0 0 12px var(--orange)}
+/* Buttons */
+.btn{font-family:inherit;font-size:clamp(20px,2.2vw,32px);padding:.45em 1.2em;border-radius:2em;border:3px solid var(--orange);background:transparent;color:var(--orange);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.fill{background:var(--orange);color:var(--ink)}
+.row{display:flex;gap:1.2vw;justify-content:center;align-items:center;flex-wrap:wrap}
+/* Suchfeld */
+.search{display:flex;align-items:center;gap:1.2vw;background:#fff;color:var(--ink);border-radius:3em;padding:.6em 1.4em;font-size:clamp(24px,3vw,46px);max-width:1500px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.search svg{width:1.2em;height:1.2em;flex:none}
+/* Vergleich */
+.two{display:flex;gap:3vw;width:100%;max-width:1500px}
+.box{flex:1;background:var(--night2);border-radius:28px;padding:3vh 2vw;display:flex;flex-direction:column;gap:2vh;align-items:center;border:4px solid transparent}
+.box h3{margin:0;font-size:clamp(24px,2.6vw,40px)}
+.box .q{font-size:clamp(22px,2.4vw,36px);background:#fff;color:var(--ink);border-radius:1em;padding:.4em .9em}
+.result{font-size:clamp(22px,2.4vw,36px);min-height:2.6em;display:flex;align-items:center;justify-content:center;border-radius:.6em;padding:.2em .8em;opacity:0;transition:.4s}
+.result.show{opacity:1}
+.result.bad{background:#5A2F3A;color:#FFD3D3}
+.result.good{background:#2F5A3A;color:#D6FFD0}
+/* Merksatz */
+.merk{font-size:clamp(40px,5.6vw,88px);line-height:1.2;max-width:1500px}
+.merk b{color:var(--orange)}
+/* Schritte */
+.steps{display:flex;gap:2vw;width:100%;max-width:1600px}
+.step{flex:1;background:var(--night2);border-radius:26px;padding:3vh 1.5vw;border-top:14px solid var(--blue);opacity:.12;transform:translateY(20px);transition:.5s;cursor:pointer}
+.step.on{opacity:1;transform:none}
+.step .num{font-size:clamp(56px,6vw,96px);color:var(--orange);font-weight:700;line-height:1}
+.step h3{font-size:clamp(22px,2.3vw,36px);margin:1vh 0}
+.step p{font-size:clamp(18px,1.8vw,28px);margin:0;color:var(--soft)}
+/* Wort-Werkstatt */
+.tiles{display:flex;flex-wrap:wrap;gap:1.2vw;justify-content:center;max-width:1600px}
+.tile{font-size:clamp(30px,4vw,64px);padding:.15em .5em;border-radius:.4em;background:#fff;color:var(--ink);cursor:pointer;border:4px solid transparent;transition:.25s;font-family:inherit}
+.tile.key{background:var(--orange);border-color:#fff;font-weight:700;transform:scale(1.06)}
+.tile.weg{background:transparent;color:var(--grey);text-decoration:line-through;border-color:var(--grey)}
+.legend{display:flex;gap:2vw;font-size:clamp(16px,1.6vw,24px);color:var(--soft)}
+.legend span b{display:inline-block;width:1em;height:1em;border-radius:.2em;vertical-align:-.1em;margin-right:.3em}
+.keys{display:flex;gap:1vw;align-items:center;flex-wrap:wrap;justify-content:center;min-height:2.4em;font-size:clamp(24px,2.8vw,42px)}
+.chip{background:var(--blue);color:#fff;border-radius:2em;padding:.15em .8em;font-weight:700}
+.own{display:flex;gap:1vw;width:100%;max-width:1300px}
+.own input{flex:1;font-family:inherit;font-size:clamp(20px,2.2vw,32px);padding:.4em .8em;border-radius:1.5em;border:3px solid var(--soft);background:#fff;color:var(--ink)}
+.tip{font-size:clamp(18px,2vw,30px);color:#FFE2C2;min-height:1.4em;margin:0}
+/* Fuellwoerter */
+.fill-chips{display:flex;flex-wrap:wrap;gap:1.2vw;justify-content:center;max-width:1500px}
+.fw{font-size:clamp(26px,3vw,48px);padding:.1em .7em;border-radius:2em;border:3px solid var(--soft);color:#fff;cursor:pointer;transition:.3s;background:transparent;font-family:inherit}
+.fw.weg{text-decoration:line-through;color:var(--grey);border-color:var(--grey)}
+.warn{font-size:clamp(20px,2.2vw,34px);background:rgba(242,166,90,.14);border:2px dashed var(--orange);border-radius:1em;padding:.5em 1em;color:#FFE2C2;max-width:1400px}
+/* Uebung */
+.ue-q{font-size:clamp(20px,2vw,30px);color:var(--soft)}
+.counter{font-size:clamp(18px,1.8vw,26px);color:var(--soft)}
+.solution{font-size:clamp(22px,2.4vw,36px);color:#D6FFD0;min-height:1.5em;opacity:0;transition:.4s}
+.solution.show{opacity:1}
+/* Plan B Karten */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:2.2vw;width:100%;max-width:1400px}
+.card{perspective:1200px;height:clamp(140px,19vh,220px);cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;backface-visibility:hidden;padding:1vh 1.5vw}
+.card .f{background:var(--night2);border:4px solid var(--blue);font-size:clamp(24px,2.8vw,44px);font-weight:700}
+.card .b{background:#fff;color:var(--ink);transform:rotateY(180deg);font-size:clamp(24px,2.8vw,44px)}
+.card .b small{font-size:.6em;color:#4A5568;margin-bottom:.3em}
+/* Suchmaschinen */
+.engines{display:flex;gap:2vw;width:100%;max-width:1600px}
+.eng{flex:1;background:#fff;color:var(--ink);border-radius:26px;padding:3vh 1.6vw;display:flex;flex-direction:column;gap:1.4vh;align-items:center}
+.eng h3{margin:0;font-size:clamp(28px,3vw,48px);color:var(--orange2)}
+.eng p{margin:0;font-size:clamp(18px,1.9vw,28px)}
+.eng .btn{border-color:var(--ink);color:var(--ink);font-size:clamp(16px,1.7vw,24px)}
+/* Pruefen */
+.checks{display:flex;flex-direction:column;gap:2vh;width:100%;max-width:1300px}
+.check{display:flex;align-items:center;gap:1.5vw;background:var(--night2);border-radius:20px;padding:2vh 2vw;font-size:clamp(24px,2.8vw,44px);cursor:pointer;text-align:left;border-left:14px solid var(--blue);transition:.3s}
+.check i{width:1.3em;height:1.3em;border-radius:.3em;border:4px solid var(--soft);flex:none;display:flex;align-items:center;justify-content:center;font-style:normal;color:var(--ink)}
+.check.on{border-left-color:var(--green)}
+.check.on i{background:var(--green);border-color:var(--green)}
+.check.on i::after{content:"✓";font-size:.8em;font-weight:700}
+/* Auftrag */
+ol.auftrag{text-align:left;font-size:clamp(26px,3.2vw,50px);line-height:1.55;margin:0;padding-left:1.4em}
+ol.auftrag li{opacity:.15;transition:.4s;cursor:pointer}
+ol.auftrag li.on{opacity:1}
+.timer{font-size:clamp(28px,3vw,46px);font-variant-numeric:tabular-nums;color:var(--orange)}
+.teacher{position:fixed;top:12px;right:18px;font-size:15px;color:#7D8AB0}
+</style></head><body>
+
+<div class="teacher">← → oder Pfeile unten zum Blättern</div>
+
+<!-- 0 Start -->
+<section class="screen on" id="s0">
+  <svg class="lupe wobble" viewBox="0 0 100 100" aria-hidden="true"><circle cx="42" cy="42" r="27" fill="rgba(91,155,224,.25)" stroke="#F2A65A" stroke-width="8"/><line x1="62" y1="62" x2="88" y2="88" stroke="#F2A65A" stroke-width="12" stroke-linecap="round"/><circle cx="33" cy="33" r="6" fill="#fff" opacity=".7"/></svg>
+  <h1>Schlagwort-Detektive</h1>
+  <p class="say">Wie finde ich im Internet Antworten auf meine Forscherfrage?</p>
+</section>
+
+<!-- 1 Ganze Frage -->
+<section class="screen" id="s1">
+  <h2>Was passiert, wenn ich meine ganze Frage eintippe?</h2>
+  <div class="search"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="42" cy="42" r="27" fill="none" stroke="#5B9BE0" stroke-width="10"/><line x1="62" y1="62" x2="88" y2="88" stroke="#5B9BE0" stroke-width="12" stroke-linecap="round"/></svg><span>Wie schnell kann ein Gepard eigentlich rennen?</span></div>
+  <p class="say">Was glaubt ihr? Findet die Suchmaschine eine gute Antwort?</p>
+</section>
+
+<!-- 2 Vergleich -->
+<section class="screen" id="s2">
+  <h2>Wir probieren es aus!</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Ganze Frage</h3>
+      <div class="q">Wie schnell kann ein Gepard eigentlich rennen?</div>
+      <a class="btn" target="_blank" rel="noopener" href="https://klexikon.zum.de/index.php?search=Wie+schnell+kann+ein+Gepard+eigentlich+rennen%3F&amp;fulltext=1">Im Klexikon suchen ↗</a>
+      <button class="btn fill" data-show="r1">Was kam heraus?</button>
+      <div class="result bad" id="r1">0 Treffer – nichts gefunden!</div>
+    </div>
+    <div class="box">
+      <h3>Nur das Schlagwort</h3>
+      <div class="q">Gepard</div>
+      <a class="btn" target="_blank" rel="noopener" href="https://klexikon.zum.de/index.php?search=Gepard&amp;fulltext=1">Im Klexikon suchen ↗</a>
+      <button class="btn fill" data-show="r2">Was kam heraus?</button>
+      <div class="result good" id="r2">Der Artikel „Gepard“ steht ganz oben!</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Merksatz -->
+<section class="screen" id="s3">
+  <div class="merk">Eine Suchmaschine liest keine Fragen.<br>Sie sucht nach <b>Wörtern</b>.</div>
+  <p class="say">Deshalb brauchen wir gute Schlagwörter.</p>
+</section>
+
+<!-- 4 Schritte -->
+<section class="screen" id="s4">
+  <h2>Die 4 Detektiv-Schritte</h2>
+  <div class="steps" id="steps">
+    <div class="step"><div class="num">1</div><h3>Frage aufschreiben</h3><p>Schreibe deine Forscherfrage ganz auf.</p></div>
+    <div class="step"><div class="num">2</div><h3>Wichtige Wörter markieren</h3><p>Welche Wörter sagen, worum es geht?</p></div>
+    <div class="step"><div class="num">3</div><h3>Füllwörter streichen</h3><p>wie, warum, gibt es, eigentlich …</p></div>
+    <div class="step"><div class="num">4</div><h3>1 bis 3 Schlagwörter eintippen</h3><p>Weniger ist oft mehr!</p></div>
+  </div>
+  <div class="row"><button class="btn fill" id="stepBtn">Nächster Schritt</button></div>
+</section>
+
+<!-- 5 Beispiel-Werkstatt -->
+<section class="screen" id="s5">
+  <h2>Die Wort-Werkstatt</h2>
+  <div class="legend"><span><b style="background:#F2A65A"></b>1× tippen: wichtig</span><span><b style="background:transparent;border:2px solid #7D88A3"></b>2× tippen: streichen</span><span><b style="background:#fff"></b>3× tippen: zurück</span></div>
+  <div class="tiles" id="tilesA"></div>
+  <div class="keys" id="keysA"></div>
+  <p class="tip" id="tipA"></p>
+  <div class="row"><button class="btn fill" id="showKeysA">Schlagwörter zeigen</button><button class="btn" id="resetA">Neu</button></div>
+</section>
+
+<!-- 6 Fuellwoerter -->
+<section class="screen" id="s6">
+  <h2>Diese Wörter kannst du meistens streichen</h2>
+  <p class="hint">Tippe ein Wort an, um es durchzustreichen.</p>
+  <div class="fill-chips" id="fw"></div>
+  <div class="warn">Aber Vorsicht! Bei „Wie <b>schwer</b> …?“ oder „Wie <b>alt</b> …?“ ist das zweite Wort wichtig.<br>Aus „schwer“ wird das Schlagwort <b>Gewicht</b>, aus „alt“ wird <b>Alter</b>.</div>
+</section>
+
+<!-- 7 Uebung -->
+<section class="screen" id="s7">
+  <h2>Jetzt ihr!</h2>
+  <p class="ue-q">Findet die Schlagwörter. Tippt die Wörter an.</p>
+  <div class="tiles" id="tilesB"></div>
+  <div class="keys" id="keysB"></div>
+  <div class="solution" id="solB"></div>
+  <div class="row">
+    <button class="btn" id="ueBack">Zurück</button>
+    <button class="btn" id="ueSol">Lösungsvorschlag</button>
+    <span class="counter" id="ueCount"></span>
+    <button class="btn fill" id="ueNext">Nächste Frage</button>
+  </div>
+</section>
+
+<!-- 8 Eigene Frage -->
+<section class="screen" id="s8">
+  <h2>Eure Forscherfragen</h2>
+  <p class="hint">Gib eine Forscherfrage ein und probiert die Detektiv-Schritte gemeinsam aus.</p>
+  <div class="own"><input id="ownIn" placeholder="Forscherfrage eintippen …" autocomplete="off"><button class="btn fill" id="ownGo">Los!</button></div>
+  <div class="tiles" id="tilesC"></div>
+  <div class="keys" id="keysC"></div>
+  <div class="row" id="ownLinks" style="visibility:hidden">
+    <a class="btn" id="lkKlex" target="_blank" rel="noopener">Klexikon ↗</a>
+    <a class="btn" id="lkHelles" target="_blank" rel="noopener">Helles Köpfchen ↗</a>
+    <a class="btn" href="https://www.fragfinn.de" target="_blank" rel="noopener">fragFINN ↗</a>
+  </div>
+</section>
+
+<!-- 9 Plan B -->
+<section class="screen" id="s9">
+  <h2>Nichts gefunden? Plan B!</h2>
+  <p class="hint">Tippe eine Karte an.</p>
+  <div class="cards">
+    <div class="card"><div class="in"><div class="f">Einzahl statt Mehrzahl</div><div class="b"><small>Beispiel</small>Katzen → <b>Katze</b></div></div></div>
+    <div class="card"><div class="in"><div class="f">Ein anderes Wort</div><div class="b"><small>Beispiel</small>Raumfahrer → <b>Astronaut</b></div></div></div>
+    <div class="card"><div class="in"><div class="f">Ein Oberbegriff</div><div class="b"><small>Beispiel</small>Merkur → <b>Planeten</b></div></div></div>
+    <div class="card"><div class="in"><div class="f">Weniger Wörter</div><div class="b"><small>Beispiel</small>Gepard schnell Tier Afrika → <b>Gepard</b></div></div></div>
+  </div>
+</section>
+
+<!-- 10 Suchmaschinen -->
+<section class="screen" id="s10">
+  <h2>Unsere Suchmaschinen</h2>
+  <div class="engines">
+    <div class="eng"><h3>Klexikon</h3><p>Ein Lexikon für Kinder.<br>Am besten <b>ein</b> Wort eintippen.</p><a class="btn" href="https://klexikon.zum.de" target="_blank" rel="noopener">klexikon.zum.de ↗</a></div>
+    <div class="eng"><h3>fragFINN</h3><p>Sucht auf vielen geprüften Kinderseiten.</p><a class="btn" href="https://www.fragfinn.de" target="_blank" rel="noopener">fragfinn.de ↗</a></div>
+    <div class="eng"><h3>Helles Köpfchen</h3><p>Suchmaschine und Wissensseite für Kinder.</p><a class="btn" href="https://www.helles-koepfchen.de" target="_blank" rel="noopener">helles-koepfchen.de ↗</a></div>
+  </div>
+</section>
+
+<!-- 11 Treffer pruefen -->
+<section class="screen" id="s11">
+  <h2>Treffer prüfen</h2>
+  <div class="checks">
+    <div class="check"><i></i>Passt die Seite zu meiner Forscherfrage?</div>
+    <div class="check"><i></i>Verstehe ich den Text?</div>
+    <div class="check"><i></i>Steht die Antwort wirklich drin?</div>
+  </div>
+  <p class="say">Nicht gleich den ersten Treffer nehmen – erst kurz überfliegen!</p>
+</section>
+
+<!-- 12 Auftrag -->
+<section class="screen" id="s12">
+  <h2>Jetzt bist du dran!</h2>
+  <ol class="auftrag" id="auftrag">
+    <li>Schreibe deine Forscherfrage auf.</li>
+    <li>Finde 1 bis 3 Schlagwörter.</li>
+    <li>Probiere sie in zwei Suchmaschinen aus.</li>
+    <li>Notiere die beste Seite in deinem Rechercheplan.</li>
+  </ol>
+  <div class="row"><button class="btn" id="tStart">Arbeitszeit starten (35 Min.)</button><span class="timer" id="timer"></span></div>
+</section>
+
+<!-- 13 Abschluss -->
+<section class="screen" id="s13">
+  <h2>Detektiv-Konferenz</h2>
+  <p class="merk" style="font-size:clamp(30px,4vw,62px)">Welches Schlagwort hat bei dir gut funktioniert?</p>
+  <p class="merk" style="font-size:clamp(30px,4vw,62px)">Was hast du gemacht, als du nichts gefunden hast?</p>
+</section>
+
+<nav>
+  <button id="prev" aria-label="zurück">‹</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="weiter">›</button>
+</nav>
+
+<script>
+/* --- Navigation --- */
+const screens=[...document.querySelectorAll('.screen')];
+let cur=0;
+const dots=document.getElementById('dots');
+screens.forEach((_,i)=>{const d=document.createElement('span');d.onclick=()=>go(i);dots.appendChild(d)});
+function go(i){
+  cur=Math.max(0,Math.min(screens.length-1,i));
+  screens.forEach((s,k)=>s.classList.toggle('on',k===cur));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur));
+  document.getElementById('prev').disabled=cur===0;
+  document.getElementById('next').disabled=cur===screens.length-1;
+}
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.getElementById('next').onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{
+  if(document.activeElement && document.activeElement.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'||e.key==='PageDown')go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1);
+});
+go(0);
+
+/* --- Ergebnisse aufdecken --- */
+document.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.show).classList.add('show'));
+
+/* --- Schritte nacheinander --- */
+const steps=[...document.querySelectorAll('#steps .step')];let stepN=0;
+document.getElementById('stepBtn').onclick=()=>{
+  if(stepN<steps.length){steps[stepN].classList.add('on');stepN++;}
+  else{steps.forEach(s=>s.classList.remove('on'));stepN=0;}
+  document.getElementById('stepBtn').textContent=stepN<steps.length?'Nächster Schritt':'Von vorn';
+};
+steps.forEach(s=>s.onclick=()=>s.classList.toggle('on'));
+
+/* --- Wort-Werkstatt --- */
+function tokens(q){return q.replace(/[?!.,;:„“"»«]/g,' ').split(/\s+/).filter(Boolean)}
+function workshop(tilesId,keysId,question){
+  const t=document.getElementById(tilesId),k=document.getElementById(keysId);
+  t.innerHTML='';k.innerHTML='';
+  tokens(question).forEach(w=>{
+    const b=document.createElement('button');b.className='tile';b.textContent=w;b.dataset.s=0;
+    b.onclick=()=>{const s=(+b.dataset.s+1)%3;b.dataset.s=s;b.classList.toggle('key',s===1);b.classList.toggle('weg',s===2);liveKeys(t,k)};
+    t.appendChild(b);
+  });
+}
+function liveKeys(t,k){
+  const ks=[...t.querySelectorAll('.tile.key')].map(b=>b.textContent);
+  k.innerHTML=ks.length?'<span>Schlagwörter:</span>'+ks.map(w=>'<span class="chip">'+w+'</span>').join(''):'';
+  return ks;
+}
+
+/* Beispiel */
+const QA='Warum können Katzen im Dunkeln so gut sehen?';
+const KEYA=['Katzen','Dunkeln','sehen'];
+function resetA(){workshop('tilesA','keysA',QA);document.getElementById('tipA').textContent='';}
+resetA();
+document.getElementById('resetA').onclick=resetA;
+document.getElementById('showKeysA').onclick=()=>{
+  document.querySelectorAll('#tilesA .tile').forEach(b=>{
+    const key=KEYA.includes(b.textContent);b.dataset.s=key?1:2;b.classList.toggle('key',key);b.classList.toggle('weg',!key);
+  });
+  document.getElementById('keysA').innerHTML='<span>Schlagwörter:</span><span class="chip">Katze</span><span class="chip">sehen</span><span class="chip">Dunkelheit</span>';
+  document.getElementById('tipA').textContent='Tipp: Aus „Katzen“ wird „Katze“ – die Einzahl findet oft mehr.';
+};
+
+/* Fuellwoerter */
+['wie','warum','was','wer','wo','wann','gibt es','eigentlich','ist','sind','der','die','das','ein','eine','kann','können','man','so','im','in'].forEach(w=>{
+  const b=document.createElement('button');b.className='fw';b.textContent=w;b.onclick=()=>b.classList.toggle('weg');
+  document.getElementById('fw').appendChild(b);
+});
+
+/* Uebung */
+const UE=[
+  ['Wie schwer ist ein Elefant?','Elefant, Gewicht'],
+  ['Wer hat die Glühbirne erfunden?','Glühbirne, Erfinder'],
+  ['Warum leuchten Glühwürmchen in der Nacht?','Glühwürmchen, leuchten'],
+  ['Wie lange schläft ein Igel im Winter?','Igel, Winterschlaf'],
+  ['Wie viele Beine hat eine Spinne?','Spinne, Beine'],
+];
+let ue=0;
+function showUe(){
+  workshop('tilesB','keysB',UE[ue][0]);
+  const s=document.getElementById('solB');s.classList.remove('show');s.textContent='Vorschlag: '+UE[ue][1];
+  document.getElementById('ueCount').textContent=(ue+1)+' / '+UE.length;
+}
+document.getElementById('ueSol').onclick=()=>document.getElementById('solB').classList.add('show');
+document.getElementById('ueNext').onclick=()=>{ue=(ue+1)%UE.length;showUe()};
+document.getElementById('ueBack').onclick=()=>{ue=(ue-1+UE.length)%UE.length;showUe()};
+showUe();
+
+/* Eigene Frage */
+const tC=document.getElementById('tilesC'),kC=document.getElementById('keysC');
+function updLinks(){
+  const ks=[...tC.querySelectorAll('.tile.key')].map(b=>b.textContent).join(' ');
+  const links=document.getElementById('ownLinks');
+  links.style.visibility=ks?'visible':'hidden';
+  document.getElementById('lkKlex').href='https://klexikon.zum.de/index.php?fulltext=1&search='+encodeURIComponent(ks);
+  document.getElementById('lkHelles').href='https://www.helles-koepfchen.de/?suche='+encodeURIComponent(ks);
+}
+function ownGo(){
+  const q=document.getElementById('ownIn').value.trim();if(!q)return;
+  workshop('tilesC','keysC',q);
+  tC.querySelectorAll('.tile').forEach(b=>b.addEventListener('click',updLinks));
+  updLinks();document.getElementById('ownIn').blur();
+}
+document.getElementById('ownGo').onclick=ownGo;
+document.getElementById('ownIn').addEventListener('keydown',e=>{if(e.key==='Enter')ownGo()});
+
+/* Plan B Karten, Pruefen, Auftrag */
+document.querySelectorAll('.card').forEach(c=>c.onclick=()=>c.classList.toggle('flip'));
+document.querySelectorAll('.check').forEach(c=>c.onclick=()=>c.classList.toggle('on'));
+document.querySelectorAll('#auftrag li').forEach(li=>li.onclick=()=>li.classList.toggle('on'));
+
+/* Timer */
+let tInt=null;
+document.getElementById('tStart').onclick=()=>{
+  document.querySelectorAll('#auftrag li').forEach(li=>li.classList.add('on'));
+  clearInterval(tInt);let rest=35*60;const el=document.getElementById('timer');
+  const tick=()=>{const m=Math.floor(rest/60),s=rest%60;el.textContent=m+':'+String(s).padStart(2,'0');if(rest<=0){clearInterval(tInt);el.textContent='Zeit ist um!';}rest--;};
+  tick();tInt=setInterval(tick,1000);
+};
+</script>
+</body></html>
