@@ -278,11 +278,10 @@ function lumiFor(i){
   else if(i>=2&&i<=4){const[p,q]=cornerPoint();face=1;lx=-9999;place(p,q,900);}
 }
 /* --- Leuchter kennenlernen --- */
-function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';u.rate=.7;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
 function lampEl(L,clickable){
   const b=document.createElement(clickable?'button':'div');b.className='lamp';
   b.innerHTML=LAMP+'<span class="lt">'+L+L.toLowerCase()+'</span>';
-  if(clickable)b.onclick=()=>{b.classList.toggle('on');if(b.classList.contains('on'))speak(L.toLowerCase());};
+  if(clickable)b.onclick=()=>{b.classList.toggle('on');};
   return b;
 }
 const lamps=document.getElementById('lamps');
