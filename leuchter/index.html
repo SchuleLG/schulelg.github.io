@@ -146,7 +146,7 @@ svg.lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-eve
   <div class="top">
     <button class="icon" id="home" aria-label="Zum Start"><svg viewBox="0 0 24 24" fill="none" stroke="#3b2a14" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button>
     <div class="prog" id="prog"></div>
-    <button class="icon" id="spk" aria-label="Vorlesen an/aus"><svg viewBox="0 0 24 24" fill="none" stroke="#3b2a14" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#f6b928"/><path d="M16.5 8.5a5 5 0 010 7"/><path d="M19 6a8.5 8.5 0 010 12"/></svg></button>
+    <span style="width:60px"></span>
   </div>
   <div class="task" id="task"></div>
   <div class="stage" id="stage"></div>
@@ -192,14 +192,9 @@ const rnd=a=>a[Math.floor(Math.random()*a.length)];
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 
-/* ---------- Vorlesen ---------- */
-let voiceOn=true,deVoice=null,lastSay='';
-function pickVoice(){try{const v=speechSynthesis.getVoices();deVoice=v.find(x=>/^de/i.test(x.lang)&&/premium|enhanced|natural|google/i.test(x.name))||v.find(x=>/^de/i.test(x.lang))||null;}catch(e){}}
-try{pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}catch(e){}
-function say(t){if(!voiceOn||!t)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';if(deVoice)u.voice=deVoice;u.rate=.9;speechSynthesis.speak(u);}catch(e){}}
-const spk=document.getElementById('spk');
-spk.onclick=()=>{voiceOn=!voiceOn;spk.classList.toggle('off',!voiceOn);if(voiceOn)say(lastSay);else try{speechSynthesis.cancel()}catch(e){}};
-function setTask(t,speech){document.getElementById('task').textContent=t;lastSay=speech||t;say(lastSay);}
+/* ---------- Kein Vorlesen ---------- */
+function say(){}
+function setTask(t){document.getElementById('task').textContent=t;}
 
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));window.scrollTo(0,0);}
 
@@ -225,7 +220,7 @@ function wordEl(syls,opts={}){
 let ex=null,N=5,ti=0,results=[],pool=[];
 const stage=document.getElementById('stage'),fb=document.getElementById('fb'),nextBtn=document.getElementById('nextBtn'),prog=document.getElementById('prog');
 document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>start(t.dataset.ex));
-document.getElementById('home').onclick=()=>{try{speechSynthesis.cancel()}catch(e){};show('sStart');};
+document.getElementById('home').onclick=()=>show('sStart');
 document.getElementById('again').onclick=()=>start(ex);
 document.getElementById('other').onclick=()=>{show('sStart');say('Was möchtest du üben?');};
 function start(e){
